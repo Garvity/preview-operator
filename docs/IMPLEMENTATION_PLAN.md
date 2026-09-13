@@ -78,7 +78,7 @@ timestamps are presentation metadata; test evidence records actual execution tim
 ## Progress
 
 - [x] M0 — Plan and repository initialized.
-- [ ] M1 — API.
+- [x] M1 — API: generated structural CRD/deepcopy and API tests pass.
 - [ ] M2 — Controller.
 - [ ] M3 — Operations.
 - [ ] M4 — Integration.
