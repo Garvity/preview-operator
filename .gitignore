@@ -1,0 +1,7 @@
+/bin/
+/.cache/
+/.envtest/
+/coverage.out
+/coverage.html
+*.test
+.DS_Store
