@@ -1,0 +1,33 @@
+KUBEBUILDER_ASSETS="$(./bin/setup-envtest use 1.37.0 --bin-dir /Users/garv/Projects/go/preview-operator/.envtest -p path)" go test -race -tags=integration -count=1 -v ./test/integration/...
+=== RUN   TestRealAPILifecycle
+=== RUN   TestRealAPILifecycle/schema-validation
+=== RUN   TestRealAPILifecycle/schema-validation/empty-image
+=== RUN   TestRealAPILifecycle/schema-validation/short-ttl
+=== RUN   TestRealAPILifecycle/schema-validation/long-ttl
+=== RUN   TestRealAPILifecycle/schema-validation/privileged-port
+=== RUN   TestRealAPILifecycle/schema-validation/too-many-replicas
+=== RUN   TestRealAPILifecycle/schema-validation/long-name
+=== RUN   TestRealAPILifecycle/schema-validation/dot-name
+=== RUN   TestRealAPILifecycle/schema-validation/numeric-name
+=== RUN   TestRealAPILifecycle/defaults-and-immutable-ttl
+=== RUN   TestRealAPILifecycle/defaults-do-not-cause-write-loops
+=== RUN   TestRealAPILifecycle/readiness-and-new-generation
+=== RUN   TestRealAPILifecycle/service-repair-and-allocated-ip
+=== RUN   TestRealAPILifecycle/expiry-waits-for-garbage-collection
+--- PASS: TestRealAPILifecycle (5.40s)
+    --- PASS: TestRealAPILifecycle/schema-validation (2.03s)
+        --- PASS: TestRealAPILifecycle/schema-validation/empty-image (2.01s)
+        --- PASS: TestRealAPILifecycle/schema-validation/short-ttl (0.00s)
+        --- PASS: TestRealAPILifecycle/schema-validation/long-ttl (0.00s)
+        --- PASS: TestRealAPILifecycle/schema-validation/privileged-port (0.00s)
+        --- PASS: TestRealAPILifecycle/schema-validation/too-many-replicas (0.00s)
+        --- PASS: TestRealAPILifecycle/schema-validation/long-name (0.00s)
+        --- PASS: TestRealAPILifecycle/schema-validation/dot-name (0.00s)
+        --- PASS: TestRealAPILifecycle/schema-validation/numeric-name (0.00s)
+    --- PASS: TestRealAPILifecycle/defaults-and-immutable-ttl (0.00s)
+    --- PASS: TestRealAPILifecycle/defaults-do-not-cause-write-loops (0.01s)
+    --- PASS: TestRealAPILifecycle/readiness-and-new-generation (0.03s)
+    --- PASS: TestRealAPILifecycle/service-repair-and-allocated-ip (0.03s)
+    --- PASS: TestRealAPILifecycle/expiry-waits-for-garbage-collection (0.02s)
+PASS
+ok  	github.com/Garvity/preview-operator/test/integration	7.525s

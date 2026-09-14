@@ -81,5 +81,5 @@ timestamps are presentation metadata; test evidence records actual execution tim
 - [x] M1 — API: generated structural CRD/deepcopy and API tests pass.
 - [x] M2 — Controller: lifecycle, ownership, expiry and race tests pass (86.3% controller coverage).
 - [x] M3 — Operations: manager build, vet, race tests, kustomize rendering and generated-file checks pass.
-- [ ] M4 — Integration.
+- [x] M4 — Integration: real API-server tests and all eight kind lifecycle checks pass; isolated cluster cleaned up.
 - [ ] M5 — Delivery.

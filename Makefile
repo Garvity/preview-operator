@@ -29,7 +29,7 @@ deploy:
 run:
 	go run ./cmd/manager --watch-namespace=preview-system --leader-elect=false
 docker-build:
-	docker build --build-arg VERSION=$(VERSION) -t $(IMAGE) .
+	docker build --provenance=false --sbom=false --build-arg VERSION=$(VERSION) -t $(IMAGE) .
 envtest:
 	@mkdir -p bin
 	GOBIN=$(CURDIR)/bin go install sigs.k8s.io/controller-runtime/tools/setup-envtest@$(ENVTEST_VERSION)

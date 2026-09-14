@@ -1,0 +1,15 @@
+NAME                                                PHASE     IMAGE                       EXPIRES     AGE
+previewenvironment.preview.garv.dev/hello-preview   Ready     hashicorp/http-echo:1.0.0   <invalid>   91s
+previewenvironment.preview.garv.dev/short-lived     Expired   hashicorp/http-echo:1.0.0   13s         73s
+
+NAME                               READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                      SELECTOR
+deployment.apps/hello-preview      2/2     2            2           80s   app          hashicorp/http-echo:1.0.0   preview.garv.dev/environment-uid=b2067644-4259-4fe6-8cad-2258c615768e
+deployment.apps/preview-operator   1/1     1            1           97s   manager      preview-operator:dev        app.kubernetes.io/name=preview-operator
+
+NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/hello-preview   ClusterIP   10.96.243.90   <none>        80/TCP    80s   preview.garv.dev/environment-uid=b2067644-4259-4fe6-8cad-2258c615768e
+
+NAME                                   READY   STATUS    RESTARTS   AGE   IP            NODE                                 NOMINATED NODE   READINESS GATES
+pod/hello-preview-88cdff694-ggqvd      1/1     Running   0          77s   10.244.0.8    preview-operator-e2e-control-plane   <none>           <none>
+pod/hello-preview-88cdff694-kbrz7      1/1     Running   0          80s   10.244.0.7    preview-operator-e2e-control-plane   <none>           <none>
+pod/preview-operator-986c4bc49-9rsnh   1/1     Running   0          10s   10.244.0.10   preview-operator-e2e-control-plane   <none>           <none>

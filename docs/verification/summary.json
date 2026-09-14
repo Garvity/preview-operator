@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-09-15T12:00:34.456121+00:00",
+  "goVersion": "go1.27.1",
+  "controllerRuntime": "v0.25.1",
+  "controllerCoverage": "86.3%",
+  "apiCoverageIncludingGeneratedCode": "39.4%",
+  "checks": {
+    "unitRaceTests": "passed",
+    "goVet": "passed",
+    "managerBuild": "passed",
+    "generatedFiles": "passed",
+    "kustomizeRender": "passed",
+    "apiServerIntegration": "passed",
+    "kindEndToEnd": "passed (8 checks)"
+  },
+  "coverageSource": "coverage-summary.txt",
+  "integrationSource": "integration-tests.log",
+  "kubectlVersion": "v1.37.0",
+  "endToEndFinishedAt": "2026-09-15T12:05:25.041983+00:00"
+}
