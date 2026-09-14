@@ -5,3 +5,6 @@
 /coverage.html
 *.test
 .DS_Store
+
+__pycache__/
+*.pyc

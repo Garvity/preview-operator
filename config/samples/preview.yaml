@@ -1,0 +1,12 @@
+apiVersion: preview.garv.dev/v1alpha1
+kind: PreviewEnvironment
+metadata:
+  name: hello-preview
+  namespace: preview-system
+spec:
+  image: hashicorp/http-echo:1.0.0
+  args: ["-text=Hello from preview-operator", "-listen=:8080"]
+  replicas: 1
+  containerPort: 8080
+  servicePort: 80
+  ttlSeconds: 3600

@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: preview-operator
+rules:
+  - apiGroups: [preview.garv.dev]
+    resources: [previewenvironments]
+    verbs: [get, list, watch]
+  - apiGroups: [preview.garv.dev]
+    resources: [previewenvironments/status]
+    verbs: [get, patch, update]
+  # OwnerReference blockOwnerDeletion admission requires delete on the owner.
+  - apiGroups: [preview.garv.dev]
+    resources: [previewenvironments]
+    verbs: [delete]
+  - apiGroups: [apps]
+    resources: [deployments]
+    verbs: [get, list, watch, create, patch, update, delete]
+  - apiGroups: [""]
+    resources: [services]
+    verbs: [get, list, watch, create, patch, update, delete]
+  - apiGroups: [""]
+    resources: [events]
+    verbs: [create, patch, update]
+  - apiGroups: [coordination.k8s.io]
+    resources: [leases]
+    verbs: [get, list, watch, create, update, patch]

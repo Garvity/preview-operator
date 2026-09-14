@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: preview-system
+resources:
+  - namespace.yaml
+  - ../crd
+  - ../rbac
+  - ../manager
+images:
+  - name: preview-operator
+    newName: preview-operator
+    newTag: dev
