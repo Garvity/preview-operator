@@ -82,4 +82,4 @@ timestamps are presentation metadata; test evidence records actual execution tim
 - [x] M2 — Controller: lifecycle, ownership, expiry and race tests pass (86.3% controller coverage).
 - [x] M3 — Operations: manager build, vet, race tests, kustomize rendering and generated-file checks pass.
 - [x] M4 — Integration: real API-server tests and all eight kind lifecycle checks pass; isolated cluster cleaned up.
-- [ ] M5 — Delivery.
+- [x] M5 — Delivery: README, architecture, runbook, contribution/security docs and verified SVG/PNG outputs delivered; documentation links and repository hygiene checked.

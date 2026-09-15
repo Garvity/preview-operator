@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1010" viewBox="0 0 1600 1010">
+<rect width="1600" height="1010" fill="#0b1220"/>
+<text x="70" y="75" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#5ee0ba">PREVIEW OPERATOR  /  ARCHITECTURE</text>
+<text x="70" y="160" font-family="Arial, sans-serif" font-size="52" font-weight="700" fill="#eff5ff">One resource. A temporary environment.</text>
+<text x="70" y="211" font-family="Arial, sans-serif" font-size="26" font-weight="400" fill="#a6b5ce">A Go controller with ownership protection and a persisted expiry deadline.</text>
+<rect x="70" y="285" width="400" height="285" rx="20" fill="#141f32" stroke="#2a3950" stroke-width="2"/>
+<text x="95" y="332" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#5ee0ba">01  DECLARE</text>
+<text x="95" y="399" font-family="Arial, sans-serif" font-size="29" font-weight="700" fill="#eff5ff">PreviewEnvironment</text>
+<text x="95" y="454" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#a6b5ce">Image + replicas + ports</text>
+<text x="95" y="491" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#a6b5ce">Immutable TTL</text>
+<text x="95" y="528" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#a6b5ce">API-server creation time</text>
+<rect x="600" y="285" width="400" height="285" rx="20" fill="#141f32" stroke="#2a3950" stroke-width="2"/>
+<text x="625" y="332" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#5ee0ba">02  RECONCILE</text>
+<text x="625" y="399" font-family="Arial, sans-serif" font-size="29" font-weight="700" fill="#eff5ff">Go operator</text>
+<text x="625" y="454" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#a6b5ce">Check ownership and deadline</text>
+<text x="625" y="491" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#a6b5ce">Converge desired resources</text>
+<text x="625" y="528" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#a6b5ce">Report observed rollout status</text>
+<rect x="1130" y="285" width="400" height="285" rx="20" fill="#141f32" stroke="#2a3950" stroke-width="2"/>
+<text x="1155" y="332" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#5ee0ba">03  SERVE</text>
+<text x="1155" y="399" font-family="Arial, sans-serif" font-size="29" font-weight="700" fill="#eff5ff">Deployment + Service</text>
+<text x="1155" y="454" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#a6b5ce">Non-root application pods</text>
+<text x="1155" y="491" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#a6b5ce">Cluster-local HTTP endpoint</text>
+<text x="1155" y="528" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#a6b5ce">Repair deleted children</text>
+<path d="M475 425 L585 425" stroke="#5ee0ba" stroke-width="4" fill="none"/>
+<polygon points="585,425 571,416 571,434" fill="#5ee0ba"/>
+<path d="M1005 425 L1115 425" stroke="#5ee0ba" stroke-width="4" fill="none"/>
+<polygon points="1115,425 1101,416 1101,434" fill="#5ee0ba"/>
+<path d="M800 580 L800 655" stroke="#5ee0ba" stroke-width="4" fill="none"/>
+<polygon points="800,655 791,641 809,641" fill="#5ee0ba"/>
+<rect x="320" y="670" width="960" height="205" rx="20" fill="#141f32" stroke="#2a3950" stroke-width="2"/>
+<text x="350" y="720" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#b8a0ff">AT THE DEADLINE</text>
+<text x="350" y="775" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#eff5ff">Expiring  →  owned workloads removed  →  Expired</text>
+<text x="350" y="829" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#a6b5ce">The CR remains for inspection. A manager restart does not reset its lifetime.</text>
+<text x="70" y="952" font-family="Arial, sans-serif" font-size="20" font-weight="400" fill="#a6b5ce">Design diagram • Expiry is eventual and depends on controller/API/garbage collector availability.</text>
+</svg>
