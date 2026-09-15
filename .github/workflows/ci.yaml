@@ -32,7 +32,7 @@ jobs:
       - run: go install sigs.k8s.io/kind@v0.33.0
       - run: make envtest
       - run: KUBECTL="$(./bin/setup-envtest use 1.37.0 --bin-dir "$PWD/.envtest" -p path)/kubectl" make test-e2e
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: e2e-evidence
