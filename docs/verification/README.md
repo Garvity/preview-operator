@@ -7,14 +7,14 @@ assigned at the user's request; test timestamps are the actual execution times.
 
 ## Results
 
-- Unit tests and race detector: passed; controller coverage **86.3%**.
+- Unit tests and race detector: passed; controller coverage **87.1%**.
 - API package coverage including generated deepcopy code: **39.4%**. The hand-written
   deadline and replica-default methods have 100% statement coverage. Total unit-test
-  coverage across API and controller packages is **73.4%**; this is not whole-manager
+  coverage across API and controller packages is **74.6%**; this is not whole-manager
   coverage and does not include integration/end-to-end coverage instrumentation.
 - `go vet`, manager build, kustomize rendering, generated-file drift check: passed.
 - Real API-server integration: passed on Kubernetes 1.37.
-- Live kind acceptance suite: eight checks passed; see `e2e-report.json` for timings.
+- Live kind acceptance suite: 18 checks passed; see `e2e-report.json` for timings.
 
 | Live check | What the test actually asserts |
 | --- | --- |
@@ -29,13 +29,19 @@ assigned at the user's request; test timestamps are the actual execution times.
 
 API-server integration checks eight invalid schema inputs, server defaults,
 immutable TTL, idempotency under API defaulting, rollout generations, preservation
-of allocated Service IPs, Service repair and initiation of foreground cleanup.
+of allocated Service IPs, Service repair, limits-only budget idempotency, manual
+rollout-pause/readiness-delay drift repair, and initiation of foreground cleanup.
 Because envtest has no Deployment controller or garbage collector, its rollout
 status is explicitly simulated and its expiry assertion stops at `Expiring`.
 The kind tests supply the real workload/deletion evidence.
 
+See [the September 16 feature audit](FEATURE_AUDIT.md) for the expanded 18-check
+matrix, the drift bug found and fixed, and the execution timestamps.
+
 ## Files
 
+- `build-tests.log`: fresh vet, race, build and generated-file verification output.
+- `cli-checks.json`: observed version/help/required-namespace CLI results.
 - `summary.json`: unit/build/static-check summary and tool versions.
 - `coverage-summary.txt`: actual output from `go tool cover -func=coverage.out`.
 - `integration-tests.log`: real API-server integration test output.

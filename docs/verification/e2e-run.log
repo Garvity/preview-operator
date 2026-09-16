@@ -2,75 +2,81 @@ No kind clusters found.
 #0 building with "orbstack" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 678B 0.0s done
-#1 DONE 0.1s
+#1 transferring dockerfile: 678B 0.1s done
+#1 DONE 0.2s
 
 #2 resolve image config for docker-image://docker.io/docker/dockerfile:1
-#2 DONE 1.5s
+#2 DONE 2.7s
 
 #3 docker-image://docker.io/docker/dockerfile:1@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32
-#3 resolve docker.io/docker/dockerfile:1@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32 0.0s done
+#3 resolve docker.io/docker/dockerfile:1@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32 0.1s done
+#3 DONE 0.2s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32
 #3 CACHED
 
-#4 [internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:cf6fca6641884b8433441b2b0652976f975e1d0fdd26d177eaaf8596087f3125
-#4 DONE 0.0s
+#4 [internal] load metadata for gcr.io/distroless/static:nonroot@sha256:e2e927ec666bae08560abb3c55d0659eceabb657f56b6782ab500a9fc7f555e3
+#4 DONE 2.7s
 
-#5 [internal] load metadata for gcr.io/distroless/static:nonroot@sha256:e2e927ec666bae08560abb3c55d0659eceabb657f56b6782ab500a9fc7f555e3
-#5 DONE 1.7s
+#5 [internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:cf6fca6641884b8433441b2b0652976f975e1d0fdd26d177eaaf8596087f3125
+#5 DONE 4.2s
 
 #6 [internal] load .dockerignore
-#6 transferring context: 99B done
+#6 transferring context: 99B 0.0s done
 #6 DONE 0.0s
 
-#7 [stage-1 1/2] FROM gcr.io/distroless/static:nonroot@sha256:e2e927ec666bae08560abb3c55d0659eceabb657f56b6782ab500a9fc7f555e3
-#7 resolve gcr.io/distroless/static:nonroot@sha256:e2e927ec666bae08560abb3c55d0659eceabb657f56b6782ab500a9fc7f555e3 0.0s done
+#7 [builder 1/8] FROM docker.io/library/golang:1.27.1-alpine@sha256:cf6fca6641884b8433441b2b0652976f975e1d0fdd26d177eaaf8596087f3125
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:cf6fca6641884b8433441b2b0652976f975e1d0fdd26d177eaaf8596087f3125 0.0s done
 #7 DONE 0.1s
 
-#8 [builder 1/8] FROM docker.io/library/golang:1.27.1-alpine@sha256:cf6fca6641884b8433441b2b0652976f975e1d0fdd26d177eaaf8596087f3125
-#8 resolve docker.io/library/golang:1.27.1-alpine@sha256:cf6fca6641884b8433441b2b0652976f975e1d0fdd26d177eaaf8596087f3125 0.0s done
+#8 [stage-1 1/2] FROM gcr.io/distroless/static:nonroot@sha256:e2e927ec666bae08560abb3c55d0659eceabb657f56b6782ab500a9fc7f555e3
+#8 resolve gcr.io/distroless/static:nonroot@sha256:e2e927ec666bae08560abb3c55d0659eceabb657f56b6782ab500a9fc7f555e3 0.1s done
 #8 DONE 0.1s
 
 #9 [internal] load build context
-#9 transferring context: 706B done
+#9 transferring context: 17.88kB 0.0s done
 #9 DONE 0.0s
 
 #10 [builder 2/8] WORKDIR /workspace
 #10 CACHED
 
-#11 [builder 5/8] COPY api/ api/
+#11 [builder 3/8] COPY go.mod go.sum ./
 #11 CACHED
 
-#12 [builder 7/8] COPY cmd/ cmd/
+#12 [builder 4/8] RUN go mod download
 #12 CACHED
 
-#13 [builder 8/8] RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -trimpath -ldflags="-s -w -X main.version=e2e" -o /manager ./cmd/manager
+#13 [builder 5/8] COPY api/ api/
 #13 CACHED
 
 #14 [builder 6/8] COPY internal/ internal/
-#14 CACHED
+#14 DONE 0.1s
 
-#15 [builder 3/8] COPY go.mod go.sum ./
-#15 CACHED
+#15 [builder 7/8] COPY cmd/ cmd/
+#15 DONE 0.1s
 
-#16 [builder 4/8] RUN go mod download
-#16 CACHED
+#16 [builder 8/8] RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -trimpath -ldflags="-s -w -X main.version=e2e" -o /manager ./cmd/manager
+#16 DONE 70.6s
+
+#8 [stage-1 1/2] FROM gcr.io/distroless/static:nonroot@sha256:e2e927ec666bae08560abb3c55d0659eceabb657f56b6782ab500a9fc7f555e3
+#8 CACHED
 
 #17 [stage-1 2/2] COPY --from=builder /manager /manager
-#17 CACHED
+#17 DONE 0.1s
 
 #18 exporting to image
-#18 exporting layers done
-#18 exporting manifest sha256:af85c88e9a947359d2a78b6436bbf766fb17952d65e0922b5f09059549150d7d done
-#18 exporting config sha256:241505d9d9b6f5f953dba5f95b6122a90ac865afd99f4765eb09969b2a6f6ca8
-#18 exporting config sha256:241505d9d9b6f5f953dba5f95b6122a90ac865afd99f4765eb09969b2a6f6ca8 done
+#18 exporting layers
+#18 exporting layers 0.8s done
+#18 exporting manifest sha256:2092ef1a83dc5f7f6240394eb75f787ffb3fbbdcc855c89f4bc1d82d3c85f8ff 0.0s done
+#18 exporting config sha256:75a0f395bf70bb3493258bd13d805d3ef31937599962545641d33dec72298813 0.0s done
 #18 naming to docker.io/library/preview-operator:dev done
-#18 unpacking to docker.io/library/preview-operator:dev 0.0s done
-#18 DONE 0.0s
+#18 unpacking to docker.io/library/preview-operator:dev 0.1s done
+#18 DONE 1.0s
 Creating cluster "preview-operator-e2e" ...
  • Ensuring node image (kindest/node:v1.37.0) 🖼️  ...
  ✓ Ensuring node image (kindest/node:v1.37.0) 🖼️
  • Preparing nodes 📦   ...
- ✓ Preparing nodes 📦 
+ ✓ Preparing nodes 📦
  • Writing configuration 📜  ...
  ✓ Writing configuration 📜
  • Starting control-plane 🕹️  ...
@@ -87,8 +93,8 @@ You can now use your cluster with:
 
 kubectl cluster-info --context kind-preview-operator-e2e --kubeconfig /Users/garv/Projects/go/preview-operator/.cache/e2e/kubeconfig
 
-Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/#community 🙂
-Image: "preview-operator:dev" with ID "sha256:af85c88e9a947359d2a78b6436bbf766fb17952d65e0922b5f09059549150d7d" not yet present on node "preview-operator-e2e-control-plane", loading...
+Have a nice day! 👋
+Image: "preview-operator:dev" with ID "sha256:2092ef1a83dc5f7f6240394eb75f787ffb3fbbdcc855c89f4bc1d82d3c85f8ff" not yet present on node "preview-operator-e2e-control-plane", loading...
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -560,9 +566,11 @@ deployment "preview-operator" successfully rolled out
     "platform": "linux/arm64"
   }
 }
+RUN: Provisioning and live HTTP response
 previewenvironment.preview.garv.dev/hello-preview created
 PASS: preview Ready
 HTTP response: Hello from preview-operator
+RUN: Recovery after Deployment and Service deletion
 {
     "apiVersion": "apps/v1",
     "kind": "Deployment",
@@ -570,12 +578,12 @@ HTTP response: Hello from preview-operator
         "annotations": {
             "deployment.kubernetes.io/revision": "1"
         },
-        "creationTimestamp": "2026-09-15T12:03:52Z",
+        "creationTimestamp": "2026-09-16T12:54:30Z",
         "generation": 1,
         "labels": {
             "app.kubernetes.io/managed-by": "preview-operator",
             "app.kubernetes.io/name": "hello-preview",
-            "preview.garv.dev/environment-uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
         },
         "name": "hello-preview",
         "namespace": "preview-system",
@@ -586,11 +594,11 @@ HTTP response: Hello from preview-operator
                 "controller": true,
                 "kind": "PreviewEnvironment",
                 "name": "hello-preview",
-                "uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
             }
         ],
-        "resourceVersion": "599",
-        "uid": "30be7531-9d5e-421a-8f75-1875ede8d6e5"
+        "resourceVersion": "630",
+        "uid": "1a632ea8-fe2b-4a0a-95de-170590810aa8"
     },
     "spec": {
         "progressDeadlineSeconds": 120,
@@ -598,7 +606,7 @@ HTTP response: Hello from preview-operator
         "revisionHistoryLimit": 2,
         "selector": {
             "matchLabels": {
-                "preview.garv.dev/environment-uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+                "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
             }
         },
         "strategy": {
@@ -613,7 +621,7 @@ HTTP response: Hello from preview-operator
                 "labels": {
                     "app.kubernetes.io/managed-by": "preview-operator",
                     "app.kubernetes.io/name": "hello-preview",
-                    "preview.garv.dev/environment-uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+                    "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
                 }
             },
             "spec": {
@@ -701,17 +709,17 @@ HTTP response: Hello from preview-operator
         "availableReplicas": 1,
         "conditions": [
             {
-                "lastTransitionTime": "2026-09-15T12:04:02Z",
-                "lastUpdateTime": "2026-09-15T12:04:02Z",
+                "lastTransitionTime": "2026-09-16T12:54:39Z",
+                "lastUpdateTime": "2026-09-16T12:54:39Z",
                 "message": "Deployment has minimum availability.",
                 "reason": "MinimumReplicasAvailable",
                 "status": "True",
                 "type": "Available"
             },
             {
-                "lastTransitionTime": "2026-09-15T12:03:52Z",
-                "lastUpdateTime": "2026-09-15T12:04:02Z",
-                "message": "ReplicaSet \"hello-preview-88cdff694\" has successfully progressed.",
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "lastUpdateTime": "2026-09-16T12:54:39Z",
+                "message": "ReplicaSet \"hello-preview-6fd9b6f56c\" has successfully progressed.",
                 "reason": "NewReplicaSetAvailable",
                 "status": "True",
                 "type": "Progressing"
@@ -733,12 +741,12 @@ service "hello-preview" deleted from preview-system namespace
         "annotations": {
             "deployment.kubernetes.io/revision": "1"
         },
-        "creationTimestamp": "2026-09-15T12:04:03Z",
+        "creationTimestamp": "2026-09-16T12:54:41Z",
         "generation": 1,
         "labels": {
             "app.kubernetes.io/managed-by": "preview-operator",
             "app.kubernetes.io/name": "hello-preview",
-            "preview.garv.dev/environment-uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
         },
         "name": "hello-preview",
         "namespace": "preview-system",
@@ -749,11 +757,11 @@ service "hello-preview" deleted from preview-system namespace
                 "controller": true,
                 "kind": "PreviewEnvironment",
                 "name": "hello-preview",
-                "uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
             }
         ],
-        "resourceVersion": "651",
-        "uid": "1e08f059-2013-42ac-ae61-defdcb6828ce"
+        "resourceVersion": "681",
+        "uid": "ede423b4-759f-46cd-b212-a0aa632ab58e"
     },
     "spec": {
         "progressDeadlineSeconds": 120,
@@ -761,7 +769,7 @@ service "hello-preview" deleted from preview-system namespace
         "revisionHistoryLimit": 2,
         "selector": {
             "matchLabels": {
-                "preview.garv.dev/environment-uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+                "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
             }
         },
         "strategy": {
@@ -776,7 +784,7 @@ service "hello-preview" deleted from preview-system namespace
                 "labels": {
                     "app.kubernetes.io/managed-by": "preview-operator",
                     "app.kubernetes.io/name": "hello-preview",
-                    "preview.garv.dev/environment-uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+                    "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
                 }
             },
             "spec": {
@@ -864,17 +872,17 @@ service "hello-preview" deleted from preview-system namespace
         "availableReplicas": 1,
         "conditions": [
             {
-                "lastTransitionTime": "2026-09-15T12:04:04Z",
-                "lastUpdateTime": "2026-09-15T12:04:04Z",
+                "lastTransitionTime": "2026-09-16T12:54:42Z",
+                "lastUpdateTime": "2026-09-16T12:54:42Z",
                 "message": "Deployment has minimum availability.",
                 "reason": "MinimumReplicasAvailable",
                 "status": "True",
                 "type": "Available"
             },
             {
-                "lastTransitionTime": "2026-09-15T12:04:03Z",
-                "lastUpdateTime": "2026-09-15T12:04:04Z",
-                "message": "ReplicaSet \"hello-preview-88cdff694\" has successfully progressed.",
+                "lastTransitionTime": "2026-09-16T12:54:41Z",
+                "lastUpdateTime": "2026-09-16T12:54:42Z",
+                "message": "ReplicaSet \"hello-preview-6fd9b6f56c\" has successfully progressed.",
                 "reason": "NewReplicaSetAvailable",
                 "status": "True",
                 "type": "Progressing"
@@ -888,6 +896,7 @@ service "hello-preview" deleted from preview-system namespace
     }
 }
 PASS: deleted children recreated and Ready
+RUN: Spec update and rollout readiness
 previewenvironment.preview.garv.dev/hello-preview patched
 {
     "apiVersion": "preview.garv.dev/v1alpha1",
@@ -896,12 +905,12 @@ previewenvironment.preview.garv.dev/hello-preview patched
         "annotations": {
             "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
         },
-        "creationTimestamp": "2026-09-15T12:03:52Z",
+        "creationTimestamp": "2026-09-16T12:54:30Z",
         "generation": 2,
         "name": "hello-preview",
         "namespace": "preview-system",
-        "resourceVersion": "661",
-        "uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+        "resourceVersion": "695",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
     },
     "spec": {
         "args": [
@@ -918,7 +927,7 @@ previewenvironment.preview.garv.dev/hello-preview patched
         "availableReplicas": 1,
         "conditions": [
             {
-                "lastTransitionTime": "2026-09-15T12:04:06Z",
+                "lastTransitionTime": "2026-09-16T12:54:44Z",
                 "message": "Waiting for the Deployment rollout",
                 "observedGeneration": 2,
                 "reason": "Progressing",
@@ -926,7 +935,7 @@ previewenvironment.preview.garv.dev/hello-preview patched
                 "type": "Ready"
             },
             {
-                "lastTransitionTime": "2026-09-15T12:03:52Z",
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
                 "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
                 "observedGeneration": 2,
                 "reason": "WithinLifetime",
@@ -934,7 +943,7 @@ previewenvironment.preview.garv.dev/hello-preview patched
                 "type": "Expired"
             }
         ],
-        "expiresAt": "2026-09-15T13:03:52Z",
+        "expiresAt": "2026-09-16T13:54:30Z",
         "observedGeneration": 2,
         "phase": "Pending"
     }
@@ -946,12 +955,12 @@ previewenvironment.preview.garv.dev/hello-preview patched
         "annotations": {
             "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
         },
-        "creationTimestamp": "2026-09-15T12:03:52Z",
+        "creationTimestamp": "2026-09-16T12:54:30Z",
         "generation": 2,
         "name": "hello-preview",
         "namespace": "preview-system",
-        "resourceVersion": "688",
-        "uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+        "resourceVersion": "721",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
     },
     "spec": {
         "args": [
@@ -968,7 +977,7 @@ previewenvironment.preview.garv.dev/hello-preview patched
         "availableReplicas": 2,
         "conditions": [
             {
-                "lastTransitionTime": "2026-09-15T12:04:07Z",
+                "lastTransitionTime": "2026-09-16T12:54:45Z",
                 "message": "All requested replicas are updated and available",
                 "observedGeneration": 2,
                 "reason": "DeploymentAvailable",
@@ -976,7 +985,7 @@ previewenvironment.preview.garv.dev/hello-preview patched
                 "type": "Ready"
             },
             {
-                "lastTransitionTime": "2026-09-15T12:03:52Z",
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
                 "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
                 "observedGeneration": 2,
                 "reason": "WithinLifetime",
@@ -985,30 +994,31 @@ previewenvironment.preview.garv.dev/hello-preview patched
             }
         ],
         "endpoint": "http://hello-preview.preview-system.svc:80",
-        "expiresAt": "2026-09-15T13:03:52Z",
+        "expiresAt": "2026-09-16T13:54:30Z",
         "observedGeneration": 2,
         "phase": "Ready"
     }
 }
 PASS: scale to two replicas
+RUN: Foreign resource collision protection
 service/collision created
 {
     "apiVersion": "v1",
     "kind": "Service",
     "metadata": {
-        "creationTimestamp": "2026-09-15T12:04:08Z",
+        "creationTimestamp": "2026-09-16T12:54:46Z",
         "labels": {
             "app": "collision"
         },
         "name": "collision",
         "namespace": "preview-system",
-        "resourceVersion": "693",
-        "uid": "e29efe47-2030-41a7-974b-d3ed828760d1"
+        "resourceVersion": "726",
+        "uid": "dd8ef9aa-a01e-47a3-a99b-f78a4f319374"
     },
     "spec": {
-        "clusterIP": "10.96.71.117",
+        "clusterIP": "10.96.160.48",
         "clusterIPs": [
-            "10.96.71.117"
+            "10.96.160.48"
         ],
         "internalTrafficPolicy": "Cluster",
         "ipFamilies": [
@@ -1039,19 +1049,19 @@ PASS: ownership conflict reported
     "apiVersion": "v1",
     "kind": "Service",
     "metadata": {
-        "creationTimestamp": "2026-09-15T12:04:08Z",
+        "creationTimestamp": "2026-09-16T12:54:46Z",
         "labels": {
             "app": "collision"
         },
         "name": "collision",
         "namespace": "preview-system",
-        "resourceVersion": "693",
-        "uid": "e29efe47-2030-41a7-974b-d3ed828760d1"
+        "resourceVersion": "726",
+        "uid": "dd8ef9aa-a01e-47a3-a99b-f78a4f319374"
     },
     "spec": {
-        "clusterIP": "10.96.71.117",
+        "clusterIP": "10.96.160.48",
         "clusterIPs": [
-            "10.96.71.117"
+            "10.96.160.48"
         ],
         "internalTrafficPolicy": "Cluster",
         "ipFamilies": [
@@ -1078,6 +1088,7 @@ PASS: ownership conflict reported
 }
 previewenvironment.preview.garv.dev "collision" deleted from preview-system namespace
 service "collision" deleted from preview-system namespace
+RUN: Namespace RBAC and workload security defaults
 no
 no
 {
@@ -1087,12 +1098,12 @@ no
         "annotations": {
             "deployment.kubernetes.io/revision": "1"
         },
-        "creationTimestamp": "2026-09-15T12:04:03Z",
+        "creationTimestamp": "2026-09-16T12:54:41Z",
         "generation": 2,
         "labels": {
             "app.kubernetes.io/managed-by": "preview-operator",
             "app.kubernetes.io/name": "hello-preview",
-            "preview.garv.dev/environment-uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
         },
         "name": "hello-preview",
         "namespace": "preview-system",
@@ -1103,11 +1114,11 @@ no
                 "controller": true,
                 "kind": "PreviewEnvironment",
                 "name": "hello-preview",
-                "uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
             }
         ],
-        "resourceVersion": "687",
-        "uid": "1e08f059-2013-42ac-ae61-defdcb6828ce"
+        "resourceVersion": "720",
+        "uid": "ede423b4-759f-46cd-b212-a0aa632ab58e"
     },
     "spec": {
         "progressDeadlineSeconds": 120,
@@ -1115,7 +1126,7 @@ no
         "revisionHistoryLimit": 2,
         "selector": {
             "matchLabels": {
-                "preview.garv.dev/environment-uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+                "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
             }
         },
         "strategy": {
@@ -1130,7 +1141,7 @@ no
                 "labels": {
                     "app.kubernetes.io/managed-by": "preview-operator",
                     "app.kubernetes.io/name": "hello-preview",
-                    "preview.garv.dev/environment-uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+                    "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
                 }
             },
             "spec": {
@@ -1218,16 +1229,16 @@ no
         "availableReplicas": 2,
         "conditions": [
             {
-                "lastTransitionTime": "2026-09-15T12:04:03Z",
-                "lastUpdateTime": "2026-09-15T12:04:04Z",
-                "message": "ReplicaSet \"hello-preview-88cdff694\" has successfully progressed.",
+                "lastTransitionTime": "2026-09-16T12:54:41Z",
+                "lastUpdateTime": "2026-09-16T12:54:42Z",
+                "message": "ReplicaSet \"hello-preview-6fd9b6f56c\" has successfully progressed.",
                 "reason": "NewReplicaSetAvailable",
                 "status": "True",
                 "type": "Progressing"
             },
             {
-                "lastTransitionTime": "2026-09-15T12:04:07Z",
-                "lastUpdateTime": "2026-09-15T12:04:07Z",
+                "lastTransitionTime": "2026-09-16T12:54:45Z",
+                "lastUpdateTime": "2026-09-16T12:54:45Z",
                 "message": "Deployment has minimum availability.",
                 "reason": "MinimumReplicasAvailable",
                 "status": "True",
@@ -1241,6 +1252,3076 @@ no
         "updatedReplicas": 2
     }
 }
+RUN: Controller and lifecycle metrics
+RUN: Server defaults and invalid API input rejection
+previewenvironment.preview.garv.dev/defaults-check created
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "creationTimestamp": "2026-09-16T12:54:47Z",
+        "generation": 1,
+        "name": "defaults-check",
+        "namespace": "preview-system",
+        "resourceVersion": "744",
+        "uid": "568450df-0dfd-4b6c-999a-16f50dc2c1b9"
+    },
+    "spec": {
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 1,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:47Z",
+                "message": "Waiting for the Deployment rollout",
+                "observedGeneration": 1,
+                "reason": "Progressing",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:47Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 1,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:47Z",
+        "observedGeneration": 1,
+        "phase": "Pending"
+    }
+}
+The PreviewEnvironment "defaults-check" is invalid: spec.ttlSeconds: Invalid value: 7200: ttlSeconds is immutable; create a new environment for a new lifetime
+The PreviewEnvironment "defaults-check" is invalid: spec.replicas: Invalid value: -1: spec.replicas in body should be greater than or equal to 0
+The PreviewEnvironment "defaults-check" is invalid: spec.containerPort: Invalid value: 80: spec.containerPort in body should be greater than or equal to 1024
+The PreviewEnvironment "defaults-check" is invalid: spec.servicePort: Invalid value: 65536: spec.servicePort in body should be less than or equal to 65535
+The PreviewEnvironment "defaults-check" is invalid:
+* spec.args: Too many: 33: must have at most 32 items
+* <nil>: Invalid value: null: some validation rules were not checked because the object was invalid; correct the existing errors to complete validation
+The PreviewEnvironment "defaults-check" is invalid: spec.image: Invalid value: "bad image": spec.image in body should match '^\S+$'
+previewenvironment.preview.garv.dev "defaults-check" deleted from preview-system namespace
+RUN: Pause and resume preserve the deadline
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 2,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "721",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:45Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 2,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 2,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:80",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 2,
+        "phase": "Ready"
+    }
+}
+previewenvironment.preview.garv.dev/hello-preview patched
+PASS: preview paused
+{
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": {
+        "annotations": {
+            "deployment.kubernetes.io/revision": "1"
+        },
+        "creationTimestamp": "2026-09-16T12:54:41Z",
+        "generation": 3,
+        "labels": {
+            "app.kubernetes.io/managed-by": "preview-operator",
+            "app.kubernetes.io/name": "hello-preview",
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+        },
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "ownerReferences": [
+            {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            }
+        ],
+        "resourceVersion": "789",
+        "uid": "ede423b4-759f-46cd-b212-a0aa632ab58e"
+    },
+    "spec": {
+        "progressDeadlineSeconds": 120,
+        "replicas": 0,
+        "revisionHistoryLimit": 2,
+        "selector": {
+            "matchLabels": {
+                "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            }
+        },
+        "strategy": {
+            "rollingUpdate": {
+                "maxSurge": 1,
+                "maxUnavailable": 0
+            },
+            "type": "RollingUpdate"
+        },
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/managed-by": "preview-operator",
+                    "app.kubernetes.io/name": "hello-preview",
+                    "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "args": [
+                            "-text=Hello from preview-operator",
+                            "-listen=:8080"
+                        ],
+                        "image": "hashicorp/http-echo:1.0.0",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "app",
+                        "ports": [
+                            {
+                                "containerPort": 8080,
+                                "name": "http",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": "http"
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/tmp",
+                                "name": "tmp"
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": false,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 10001,
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "emptyDir": {
+                            "sizeLimit": "64Mi"
+                        },
+                        "name": "tmp"
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:41Z",
+                "lastUpdateTime": "2026-09-16T12:54:42Z",
+                "message": "ReplicaSet \"hello-preview-6fd9b6f56c\" has successfully progressed.",
+                "reason": "NewReplicaSetAvailable",
+                "status": "True",
+                "type": "Progressing"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:45Z",
+                "lastUpdateTime": "2026-09-16T12:54:45Z",
+                "message": "Deployment has minimum availability.",
+                "reason": "MinimumReplicasAvailable",
+                "status": "True",
+                "type": "Available"
+            }
+        ],
+        "observedGeneration": 3,
+        "terminatingReplicas": 2
+    }
+}
+PASS: paused Deployment reaches zero replicas
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 3,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "791",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 0,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:48Z",
+                "message": "Application is scaled to zero; the expiry deadline is unchanged",
+                "observedGeneration": 3,
+                "reason": "ScaledToZero",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 3,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 3,
+        "phase": "Paused"
+    }
+}
+previewenvironment.preview.garv.dev/hello-preview patched
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 4,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "799",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:48Z",
+                "message": "Waiting for the Deployment rollout",
+                "observedGeneration": 4,
+                "reason": "Progressing",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 4,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 4,
+        "phase": "Pending"
+    }
+}
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 4,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "853",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:49Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 4,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 4,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:80",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 4,
+        "phase": "Ready"
+    }
+}
+PASS: preview resumes
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 4,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "853",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:49Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 4,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 4,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:80",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 4,
+        "phase": "Ready"
+    }
+}
+RUN: Custom arguments ports and resource budgets
+{
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+        "creationTimestamp": "2026-09-16T12:54:41Z",
+        "labels": {
+            "app.kubernetes.io/managed-by": "preview-operator",
+            "app.kubernetes.io/name": "hello-preview",
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+        },
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "ownerReferences": [
+            {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            }
+        ],
+        "resourceVersion": "657",
+        "uid": "0717d292-3ae0-4c27-9ded-0dcb8852689c"
+    },
+    "spec": {
+        "clusterIP": "10.96.235.179",
+        "clusterIPs": [
+            "10.96.235.179"
+        ],
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+            "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+            {
+                "name": "http",
+                "port": 80,
+                "protocol": "TCP",
+                "targetPort": "http"
+            }
+        ],
+        "selector": {
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+    },
+    "status": {
+        "loadBalancer": {}
+    }
+}
+previewenvironment.preview.garv.dev/hello-preview patched
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 5,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "864",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Custom configuration verified",
+            "-listen=:9091"
+        ],
+        "containerPort": 9091,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "resources": {
+            "limits": {
+                "cpu": "300m",
+                "memory": "160Mi"
+            },
+            "requests": {
+                "cpu": "60m",
+                "memory": "40Mi"
+            }
+        },
+        "servicePort": 8088,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:51Z",
+                "message": "Waiting for the Deployment rollout",
+                "observedGeneration": 5,
+                "reason": "Progressing",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 5,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 5,
+        "phase": "Pending"
+    }
+}
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 5,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "944",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Custom configuration verified",
+            "-listen=:9091"
+        ],
+        "containerPort": 9091,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "resources": {
+            "limits": {
+                "cpu": "300m",
+                "memory": "160Mi"
+            },
+            "requests": {
+                "cpu": "60m",
+                "memory": "40Mi"
+            }
+        },
+        "servicePort": 8088,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:52Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 5,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 5,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:8088",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 5,
+        "phase": "Ready"
+    }
+}
+PASS: custom configuration rolls out
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 5,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "944",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Custom configuration verified",
+            "-listen=:9091"
+        ],
+        "containerPort": 9091,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "resources": {
+            "limits": {
+                "cpu": "300m",
+                "memory": "160Mi"
+            },
+            "requests": {
+                "cpu": "60m",
+                "memory": "40Mi"
+            }
+        },
+        "servicePort": 8088,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:52Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 5,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 5,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:8088",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 5,
+        "phase": "Ready"
+    }
+}
+{
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": {
+        "annotations": {
+            "deployment.kubernetes.io/revision": "2"
+        },
+        "creationTimestamp": "2026-09-16T12:54:41Z",
+        "generation": 5,
+        "labels": {
+            "app.kubernetes.io/managed-by": "preview-operator",
+            "app.kubernetes.io/name": "hello-preview",
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+        },
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "ownerReferences": [
+            {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            }
+        ],
+        "resourceVersion": "949",
+        "uid": "ede423b4-759f-46cd-b212-a0aa632ab58e"
+    },
+    "spec": {
+        "progressDeadlineSeconds": 120,
+        "replicas": 2,
+        "revisionHistoryLimit": 2,
+        "selector": {
+            "matchLabels": {
+                "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            }
+        },
+        "strategy": {
+            "rollingUpdate": {
+                "maxSurge": 1,
+                "maxUnavailable": 0
+            },
+            "type": "RollingUpdate"
+        },
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/managed-by": "preview-operator",
+                    "app.kubernetes.io/name": "hello-preview",
+                    "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "args": [
+                            "-text=Custom configuration verified",
+                            "-listen=:9091"
+                        ],
+                        "image": "hashicorp/http-echo:1.0.0",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "app",
+                        "ports": [
+                            {
+                                "containerPort": 9091,
+                                "name": "http",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": "http"
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "300m",
+                                "memory": "160Mi"
+                            },
+                            "requests": {
+                                "cpu": "60m",
+                                "memory": "40Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/tmp",
+                                "name": "tmp"
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": false,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 10001,
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "emptyDir": {
+                            "sizeLimit": "64Mi"
+                        },
+                        "name": "tmp"
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:49Z",
+                "lastUpdateTime": "2026-09-16T12:54:49Z",
+                "message": "Deployment has minimum availability.",
+                "reason": "MinimumReplicasAvailable",
+                "status": "True",
+                "type": "Available"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:41Z",
+                "lastUpdateTime": "2026-09-16T12:54:52Z",
+                "message": "ReplicaSet \"hello-preview-79987c8b57\" has successfully progressed.",
+                "reason": "NewReplicaSetAvailable",
+                "status": "True",
+                "type": "Progressing"
+            }
+        ],
+        "observedGeneration": 5,
+        "readyReplicas": 2,
+        "replicas": 2,
+        "terminatingReplicas": 0,
+        "updatedReplicas": 2
+    }
+}
+{
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+        "creationTimestamp": "2026-09-16T12:54:41Z",
+        "labels": {
+            "app.kubernetes.io/managed-by": "preview-operator",
+            "app.kubernetes.io/name": "hello-preview",
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+        },
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "ownerReferences": [
+            {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            }
+        ],
+        "resourceVersion": "862",
+        "uid": "0717d292-3ae0-4c27-9ded-0dcb8852689c"
+    },
+    "spec": {
+        "clusterIP": "10.96.235.179",
+        "clusterIPs": [
+            "10.96.235.179"
+        ],
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+            "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+            {
+                "name": "http",
+                "port": 8088,
+                "protocol": "TCP",
+                "targetPort": "http"
+            }
+        ],
+        "selector": {
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+    },
+    "status": {
+        "loadBalancer": {}
+    }
+}
+previewenvironment.preview.garv.dev/hello-preview patched
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 6,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "963",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:54Z",
+                "message": "Waiting for the Deployment rollout",
+                "observedGeneration": 6,
+                "reason": "Progressing",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 6,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 6,
+        "phase": "Pending"
+    }
+}
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 6,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1039",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:55Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 6,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 6,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:80",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 6,
+        "phase": "Ready"
+    }
+}
+PASS: default configuration restored
+RUN: Deployment and Service drift repair
+deployment.apps/hello-preview patched
+Warning: would violate PodSecurity "restricted:v1.37": allowPrivilegeEscalation != false (container "app" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "app" must set securityContext.capabilities.drop=["ALL"])
+service/hello-preview patched
+{
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": {
+        "annotations": {
+            "deployment.kubernetes.io/revision": "3"
+        },
+        "creationTimestamp": "2026-09-16T12:54:41Z",
+        "generation": 8,
+        "labels": {
+            "app.kubernetes.io/managed-by": "preview-operator",
+            "app.kubernetes.io/name": "hello-preview",
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+        },
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "ownerReferences": [
+            {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            }
+        ],
+        "resourceVersion": "1079",
+        "uid": "ede423b4-759f-46cd-b212-a0aa632ab58e"
+    },
+    "spec": {
+        "progressDeadlineSeconds": 120,
+        "replicas": 2,
+        "revisionHistoryLimit": 2,
+        "selector": {
+            "matchLabels": {
+                "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            }
+        },
+        "strategy": {
+            "rollingUpdate": {
+                "maxSurge": 1,
+                "maxUnavailable": 0
+            },
+            "type": "RollingUpdate"
+        },
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/managed-by": "preview-operator",
+                    "app.kubernetes.io/name": "hello-preview",
+                    "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "args": [
+                            "-text=Hello from preview-operator",
+                            "-listen=:8080"
+                        ],
+                        "image": "hashicorp/http-echo:1.0.0",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "app",
+                        "ports": [
+                            {
+                                "containerPort": 8080,
+                                "name": "http",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": "http"
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/tmp",
+                                "name": "tmp"
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": false,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 10001,
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "emptyDir": {
+                            "sizeLimit": "64Mi"
+                        },
+                        "name": "tmp"
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:56Z",
+                "lastUpdateTime": "2026-09-16T12:54:56Z",
+                "message": "Deployment is resumed",
+                "reason": "DeploymentResumed",
+                "status": "Unknown",
+                "type": "Progressing"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:56Z",
+                "lastUpdateTime": "2026-09-16T12:54:56Z",
+                "message": "Deployment does not have minimum availability.",
+                "reason": "MinimumReplicasUnavailable",
+                "status": "False",
+                "type": "Available"
+            }
+        ],
+        "observedGeneration": 8,
+        "terminatingReplicas": 2,
+        "unavailableReplicas": 2
+    }
+}
+{
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+        "creationTimestamp": "2026-09-16T12:54:41Z",
+        "labels": {
+            "app.kubernetes.io/managed-by": "preview-operator",
+            "app.kubernetes.io/name": "hello-preview",
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+        },
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "ownerReferences": [
+            {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            }
+        ],
+        "resourceVersion": "1066",
+        "uid": "0717d292-3ae0-4c27-9ded-0dcb8852689c"
+    },
+    "spec": {
+        "clusterIP": "10.96.235.179",
+        "clusterIPs": [
+            "10.96.235.179"
+        ],
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+            "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+            {
+                "name": "http",
+                "port": 80,
+                "protocol": "TCP",
+                "targetPort": "http"
+            }
+        ],
+        "selector": {
+            "preview.garv.dev/environment-uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+    },
+    "status": {
+        "loadBalancer": {}
+    }
+}
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 6,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1081",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:56Z",
+                "message": "Waiting for the Deployment rollout",
+                "observedGeneration": 6,
+                "reason": "Progressing",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 6,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 6,
+        "phase": "Pending"
+    }
+}
+PASS: all managed drift repaired
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 6,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1081",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:56Z",
+                "message": "Waiting for the Deployment rollout",
+                "observedGeneration": 6,
+                "reason": "Progressing",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 6,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 6,
+        "phase": "Pending"
+    }
+}
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 6,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1116",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:57Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 6,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 6,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:80",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 6,
+        "phase": "Ready"
+    }
+}
+PASS: repaired rollout Ready
+RUN: Invalid workload budget error and recovery
+previewenvironment.preview.garv.dev/hello-preview patched
+PASS: invalid child budget reported as Error
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 7,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1136",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "resources": {
+            "limits": {
+                "cpu": "100m"
+            },
+            "requests": {
+                "cpu": "2"
+            }
+        },
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:59Z",
+                "message": "Deployment.apps \"hello-preview\" is invalid: spec.template.spec.containers[0].resources.requests: Invalid value: \"2\": must be less than or equal to cpu limit of 100m",
+                "observedGeneration": 7,
+                "reason": "ReconcileFailed",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 7,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 7,
+        "phase": "Error"
+    }
+}
+previewenvironment.preview.garv.dev/hello-preview patched
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 8,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1142",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:59Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 8,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 8,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:80",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 8,
+        "phase": "Ready"
+    }
+}
+PASS: corrected budget recovers
+RUN: Image rollout failure and recovery
+previewenvironment.preview.garv.dev/hello-preview patched
+PASS: failed image rollout is not Ready
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 9,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1147",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "invalid.invalid/preview-operator/nonexistent:missing",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:59Z",
+                "message": "Waiting for the Deployment rollout",
+                "observedGeneration": 9,
+                "reason": "Progressing",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 9,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 9,
+        "phase": "Pending"
+    }
+}
+Waiting for the real Deployment progress deadline (120 seconds)
+PASS: rollout failure reported
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 9,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1426",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "invalid.invalid/preview-operator/nonexistent:missing",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:59Z",
+                "message": "ReplicaSet \"hello-preview-685df56f9d\" has timed out progressing.",
+                "observedGeneration": 9,
+                "reason": "RolloutFailed",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 9,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 9,
+        "phase": "Error"
+    }
+}
+previewenvironment.preview.garv.dev/hello-preview patched
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 10,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1438",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:54:59Z",
+                "message": "ReplicaSet \"hello-preview-685df56f9d\" has timed out progressing.",
+                "observedGeneration": 10,
+                "reason": "RolloutFailed",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 10,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 10,
+        "phase": "Error"
+    }
+}
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 10,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1454",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:57:01Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 10,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 10,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:80",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 10,
+        "phase": "Ready"
+    }
+}
+PASS: corrected image recovers
+RUN: Health readiness Events and stable conditions
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 10,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1454",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:57:01Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 10,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 10,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:80",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 10,
+        "phase": "Ready"
+    }
+}
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "count": 9,
+            "eventTime": null,
+            "firstTimestamp": "2026-09-16T12:54:30Z",
+            "involvedObject": {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "namespace": "preview-system",
+                "resourceVersion": "593",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-09-16T12:57:01Z",
+            "message": "Waiting for the Deployment rollout",
+            "metadata": {
+                "creationTimestamp": "2026-09-16T12:54:30Z",
+                "name": "hello-preview.18d5ce501c68dd42",
+                "namespace": "preview-system",
+                "resourceVersion": "1452",
+                "uid": "c0ae9ca6-5025-41be-90e5-3912ccd640eb"
+            },
+            "reason": "Progressing",
+            "reportingComponent": "preview-operator",
+            "reportingInstance": "",
+            "source": {
+                "component": "preview-operator"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 9,
+            "eventTime": null,
+            "firstTimestamp": "2026-09-16T12:54:39Z",
+            "involvedObject": {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "namespace": "preview-system",
+                "resourceVersion": "631",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-09-16T12:57:01Z",
+            "message": "All requested replicas are updated and available",
+            "metadata": {
+                "creationTimestamp": "2026-09-16T12:54:39Z",
+                "name": "hello-preview.18d5ce5245166b1b",
+                "namespace": "preview-system",
+                "resourceVersion": "1455",
+                "uid": "6660f944-f4d8-439d-b915-c6a77628843e"
+            },
+            "reason": "DeploymentAvailable",
+            "reportingComponent": "preview-operator",
+            "reportingInstance": "",
+            "source": {
+                "component": "preview-operator"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-09-16T12:54:48Z",
+            "involvedObject": {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "namespace": "preview-system",
+                "resourceVersion": "771",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-09-16T12:54:48Z",
+            "message": "Application is scaled to zero; the expiry deadline is unchanged",
+            "metadata": {
+                "creationTimestamp": "2026-09-16T12:54:48Z",
+                "name": "hello-preview.18d5ce5453e34f52",
+                "namespace": "preview-system",
+                "resourceVersion": "774",
+                "uid": "96c565d6-5da5-4b77-8603-3527ec8f1aeb"
+            },
+            "reason": "ScaledToZero",
+            "reportingComponent": "preview-operator",
+            "reportingInstance": "",
+            "source": {
+                "component": "preview-operator"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-09-16T12:54:56Z",
+            "involvedObject": {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "namespace": "preview-system",
+                "resourceVersion": "1050",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-09-16T12:54:56Z",
+            "message": "Operation cannot be fulfilled on deployments.apps \"hello-preview\": the object has been modified; please apply your changes to the latest version and try again",
+            "metadata": {
+                "creationTimestamp": "2026-09-16T12:54:56Z",
+                "name": "hello-preview.18d5ce5624b9960c",
+                "namespace": "preview-system",
+                "resourceVersion": "1053",
+                "uid": "c43e0e80-f4b2-4a20-b28a-a1c216c469fa"
+            },
+            "reason": "ReconcileFailed",
+            "reportingComponent": "preview-operator",
+            "reportingInstance": "",
+            "source": {
+                "component": "preview-operator"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-09-16T12:54:59Z",
+            "involvedObject": {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "namespace": "preview-system",
+                "resourceVersion": "1136",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-09-16T12:54:59Z",
+            "message": "Deployment.apps \"hello-preview\" is invalid: spec.template.spec.containers[0].resources.requests: Invalid value: \"2\": must be less than or equal to cpu limit of 100m",
+            "metadata": {
+                "creationTimestamp": "2026-09-16T12:54:59Z",
+                "name": "hello-preview.18d5ce56d7b383f9",
+                "namespace": "preview-system",
+                "resourceVersion": "1137",
+                "uid": "45ba9f93-e3ec-404f-bc20-3b0a15f3c7a2"
+            },
+            "reason": "ReconcileFailed",
+            "reportingComponent": "preview-operator",
+            "reportingInstance": "",
+            "source": {
+                "component": "preview-operator"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-09-16T12:57:00Z",
+            "involvedObject": {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "kind": "PreviewEnvironment",
+                "name": "hello-preview",
+                "namespace": "preview-system",
+                "resourceVersion": "1426",
+                "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-09-16T12:57:00Z",
+            "message": "ReplicaSet \"hello-preview-685df56f9d\" has timed out progressing.",
+            "metadata": {
+                "creationTimestamp": "2026-09-16T12:57:00Z",
+                "name": "hello-preview.18d5ce72f713b06b",
+                "namespace": "preview-system",
+                "resourceVersion": "1427",
+                "uid": "db7449b2-ec39-4daf-a881-0f98541b92ad"
+            },
+            "reason": "RolloutFailed",
+            "reportingComponent": "preview-operator",
+            "reportingInstance": "",
+            "source": {
+                "component": "preview-operator"
+            },
+            "type": "Warning"
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+previewenvironment.preview.garv.dev/hello-preview annotated
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "audit.garv.dev/check": "stable",
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 10,
+        "name": "hello-preview",
+        "namespace": "preview-system",
+        "resourceVersion": "1469",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 2,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    },
+    "status": {
+        "availableReplicas": 2,
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:57:01Z",
+                "message": "All requested replicas are updated and available",
+                "observedGeneration": 10,
+                "reason": "DeploymentAvailable",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 10,
+                "reason": "WithinLifetime",
+                "status": "False",
+                "type": "Expired"
+            }
+        ],
+        "endpoint": "http://hello-preview.preview-system.svc:80",
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 10,
+        "phase": "Ready"
+    }
+}
+RUN: Out-of-namespace previews remain untouched
+previewenvironment.preview.garv.dev/outside-watch created
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "creationTimestamp": "2026-09-16T12:57:07Z",
+        "generation": 1,
+        "name": "outside-watch",
+        "namespace": "default",
+        "resourceVersion": "1473",
+        "uid": "79cf6827-55d6-4442-b8eb-41ca4870ba7a"
+    },
+    "spec": {
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 1,
+        "servicePort": 80,
+        "ttlSeconds": 3600
+    }
+}
+previewenvironment.preview.garv.dev "outside-watch" deleted from default namespace
+RUN: Leader election and failover
+deployment.apps/preview-operator patched
+Waiting for deployment "preview-operator" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "preview-operator" rollout to finish: 1 of 2 updated replicas are available...
+deployment "preview-operator" successfully rolled out
+{
+    "apiVersion": "coordination.k8s.io/v1",
+    "kind": "Lease",
+    "metadata": {
+        "creationTimestamp": "2026-09-16T12:54:24Z",
+        "name": "preview-operator.preview.garv.dev",
+        "namespace": "preview-system",
+        "resourceVersion": "1507",
+        "uid": "8f0218cc-a57b-4ded-a998-6e04f86bfee5"
+    },
+    "spec": {
+        "acquireTime": "2026-09-16T12:54:24.956480Z",
+        "holderIdentity": "preview-operator-986c4bc49-4s745_7d64966a-362c-46b6-b063-8d87ffd8bc35",
+        "leaseDurationSeconds": 15,
+        "leaseTransitions": 0,
+        "renewTime": "2026-09-16T12:57:14.821130Z"
+    }
+}
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-09-16T12:54:24Z",
+                "generateName": "preview-operator-986c4bc49-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/name": "preview-operator",
+                    "pod-template-hash": "986c4bc49"
+                },
+                "name": "preview-operator-986c4bc49-4s745",
+                "namespace": "preview-system",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "preview-operator-986c4bc49",
+                        "uid": "153d2aa3-a9b3-499f-b2fa-51109c19b68d"
+                    }
+                ],
+                "resourceVersion": "579",
+                "uid": "5ebfb0dd-cceb-4645-99d4-582cd2ef6929"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "args": [
+                            "--leader-elect=true",
+                            "--metrics-bind-address=127.0.0.1:8080",
+                            "--health-probe-bind-address=:8081"
+                        ],
+                        "env": [
+                            {
+                                "name": "POD_NAMESPACE",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.namespace"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "preview-operator:dev",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/healthz",
+                                "port": "health",
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 15,
+                            "periodSeconds": 20,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "name": "manager",
+                        "ports": [
+                            {
+                                "containerPort": 8081,
+                                "name": "health",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/readyz",
+                                "port": "health",
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 3,
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "500m",
+                                "memory": "256Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-wxbjl",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "preview-operator-e2e-control-plane",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 65532,
+                    "runAsNonRoot": true,
+                    "runAsUser": 65532,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "preview-operator",
+                "serviceAccountName": "preview-operator",
+                "terminationGracePeriodSeconds": 40,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "kube-api-access-wxbjl",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "50m",
+                    "memory": "64Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-16T12:54:24Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-16T12:54:24Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-16T12:54:30Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-16T12:54:30Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-16T12:54:24Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "50m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://1b613418a03f4601cd17f01a62a599cc4521c356442107587ec806c658cfc76f",
+                        "image": "docker.io/library/preview-operator:dev",
+                        "imageID": "docker.io/library/import-2026-09-16@sha256:de1f30b380b99d1b4be3b645d9f149ccc035b388d4f3bde70e398757dbd2fdb6",
+                        "lastState": {},
+                        "name": "manager",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "500m",
+                                "memory": "256Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-09-16T12:54:24Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 65532,
+                                "supplementalGroups": [
+                                    65532
+                                ],
+                                "uid": 65532
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-wxbjl",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.97.2",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.97.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.244.0.5",
+                "podIPs": [
+                    {
+                        "ip": "10.244.0.5"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "500m",
+                        "memory": "256Mi"
+                    },
+                    "requests": {
+                        "cpu": "28m",
+                        "memory": "64Mi"
+                    }
+                },
+                "startTime": "2026-09-16T12:54:24Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-09-16T12:57:10Z",
+                "generateName": "preview-operator-986c4bc49-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/name": "preview-operator",
+                    "pod-template-hash": "986c4bc49"
+                },
+                "name": "preview-operator-986c4bc49-l56v6",
+                "namespace": "preview-system",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "preview-operator-986c4bc49",
+                        "uid": "153d2aa3-a9b3-499f-b2fa-51109c19b68d"
+                    }
+                ],
+                "resourceVersion": "1511",
+                "uid": "d150b04f-2264-4684-baf6-41014b868927"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "args": [
+                            "--leader-elect=true",
+                            "--metrics-bind-address=127.0.0.1:8080",
+                            "--health-probe-bind-address=:8081"
+                        ],
+                        "env": [
+                            {
+                                "name": "POD_NAMESPACE",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.namespace"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "preview-operator:dev",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/healthz",
+                                "port": "health",
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 15,
+                            "periodSeconds": 20,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "name": "manager",
+                        "ports": [
+                            {
+                                "containerPort": 8081,
+                                "name": "health",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/readyz",
+                                "port": "health",
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 3,
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "500m",
+                                "memory": "256Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-psxrw",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "preview-operator-e2e-control-plane",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 65532,
+                    "runAsNonRoot": true,
+                    "runAsUser": 65532,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "preview-operator",
+                "serviceAccountName": "preview-operator",
+                "terminationGracePeriodSeconds": 40,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "kube-api-access-psxrw",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "50m",
+                    "memory": "64Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-16T12:57:11Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-16T12:57:10Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-16T12:57:16Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-16T12:57:16Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-16T12:57:10Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "50m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://85f1055fd7e28d37eea67ec8ce76a993f138a0ed81b9eb831aa7eed94157be12",
+                        "image": "docker.io/library/preview-operator:dev",
+                        "imageID": "docker.io/library/import-2026-09-16@sha256:de1f30b380b99d1b4be3b645d9f149ccc035b388d4f3bde70e398757dbd2fdb6",
+                        "lastState": {},
+                        "name": "manager",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "500m",
+                                "memory": "256Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-09-16T12:57:11Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 65532,
+                                "supplementalGroups": [
+                                    65532
+                                ],
+                                "uid": 65532
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-psxrw",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.97.2",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.97.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.244.0.19",
+                "podIPs": [
+                    {
+                        "ip": "10.244.0.19"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "500m",
+                        "memory": "256Mi"
+                    },
+                    "requests": {
+                        "cpu": "28m",
+                        "memory": "64Mi"
+                    }
+                },
+                "startTime": "2026-09-16T12:57:10Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+pod "preview-operator-986c4bc49-4s745" deleted from preview-system namespace
+{
+    "apiVersion": "coordination.k8s.io/v1",
+    "kind": "Lease",
+    "metadata": {
+        "creationTimestamp": "2026-09-16T12:54:24Z",
+        "name": "preview-operator.preview.garv.dev",
+        "namespace": "preview-system",
+        "resourceVersion": "1536",
+        "uid": "8f0218cc-a57b-4ded-a998-6e04f86bfee5"
+    },
+    "spec": {
+        "acquireTime": "2026-09-16T12:57:17.399603Z",
+        "holderIdentity": "preview-operator-986c4bc49-5qbnh_4e75e527-7b19-40b7-8bc9-b10297e4f317",
+        "leaseDurationSeconds": 15,
+        "leaseTransitions": 1,
+        "renewTime": "2026-09-16T12:57:17.410797Z"
+    }
+}
+PASS: standby takes leader lease
+service "hello-preview" deleted from preview-system namespace
+PASS: new leader repairs Service
+deployment.apps/preview-operator patched
+deployment "preview-operator" successfully rolled out
+RUN: Online expiry and blocked-cleanup recovery
+previewenvironment.preview.garv.dev/held-expiry created
+PASS: held preview Ready
+deployment.apps/held-expiry patched
+PASS: online deadline starts cleanup
+{
+    "apiVersion": "preview.garv.dev/v1alpha1",
+    "kind": "PreviewEnvironment",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"held-expiry\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":60}}\n"
+        },
+        "creationTimestamp": "2026-09-16T12:57:18Z",
+        "generation": 1,
+        "name": "held-expiry",
+        "namespace": "preview-system",
+        "resourceVersion": "1727",
+        "uid": "73007eb7-2005-4cf6-8e9c-10680319d4e8"
+    },
+    "spec": {
+        "args": [
+            "-text=Hello from preview-operator",
+            "-listen=:8080"
+        ],
+        "containerPort": 8080,
+        "image": "hashicorp/http-echo:1.0.0",
+        "replicas": 1,
+        "servicePort": 80,
+        "ttlSeconds": 60
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:58:18Z",
+                "message": "Deadline elapsed; waiting for managed resources to be deleted",
+                "observedGeneration": 1,
+                "reason": "CleanupInProgress",
+                "status": "False",
+                "type": "Ready"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:58:18Z",
+                "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
+                "observedGeneration": 1,
+                "reason": "DeadlineElapsed",
+                "status": "True",
+                "type": "Expired"
+            }
+        ],
+        "expiresAt": "2026-09-16T12:58:18Z",
+        "observedGeneration": 1,
+        "phase": "Expiring"
+    }
+}
+{
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": {
+        "annotations": {
+            "deployment.kubernetes.io/revision": "1"
+        },
+        "creationTimestamp": "2026-09-16T12:57:18Z",
+        "deletionGracePeriodSeconds": 0,
+        "deletionTimestamp": "2026-09-16T12:58:18Z",
+        "finalizers": [
+            "audit.garv.dev/hold"
+        ],
+        "generation": 2,
+        "labels": {
+            "app.kubernetes.io/managed-by": "preview-operator",
+            "app.kubernetes.io/name": "held-expiry",
+            "preview.garv.dev/environment-uid": "73007eb7-2005-4cf6-8e9c-10680319d4e8"
+        },
+        "name": "held-expiry",
+        "namespace": "preview-system",
+        "ownerReferences": [
+            {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "PreviewEnvironment",
+                "name": "held-expiry",
+                "uid": "73007eb7-2005-4cf6-8e9c-10680319d4e8"
+            }
+        ],
+        "resourceVersion": "1748",
+        "uid": "6bfa1d94-27f9-43a5-93c1-59b67470e2c4"
+    },
+    "spec": {
+        "progressDeadlineSeconds": 120,
+        "replicas": 1,
+        "revisionHistoryLimit": 2,
+        "selector": {
+            "matchLabels": {
+                "preview.garv.dev/environment-uid": "73007eb7-2005-4cf6-8e9c-10680319d4e8"
+            }
+        },
+        "strategy": {
+            "rollingUpdate": {
+                "maxSurge": 1,
+                "maxUnavailable": 0
+            },
+            "type": "RollingUpdate"
+        },
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/managed-by": "preview-operator",
+                    "app.kubernetes.io/name": "held-expiry",
+                    "preview.garv.dev/environment-uid": "73007eb7-2005-4cf6-8e9c-10680319d4e8"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "args": [
+                            "-text=Hello from preview-operator",
+                            "-listen=:8080"
+                        ],
+                        "image": "hashicorp/http-echo:1.0.0",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "app",
+                        "ports": [
+                            {
+                                "containerPort": 8080,
+                                "name": "http",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": "http"
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/tmp",
+                                "name": "tmp"
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": false,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 10001,
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "emptyDir": {
+                            "sizeLimit": "64Mi"
+                        },
+                        "name": "tmp"
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:57:18Z",
+                "lastUpdateTime": "2026-09-16T12:57:19Z",
+                "message": "ReplicaSet \"held-expiry-6c7594fc59\" has successfully progressed.",
+                "reason": "NewReplicaSetAvailable",
+                "status": "True",
+                "type": "Progressing"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:58:18Z",
+                "lastUpdateTime": "2026-09-16T12:58:18Z",
+                "message": "Deployment does not have minimum availability.",
+                "reason": "MinimumReplicasUnavailable",
+                "status": "False",
+                "type": "Available"
+            }
+        ],
+        "observedGeneration": 2,
+        "terminatingReplicas": 0
+    }
+}
+{
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": {
+        "annotations": {
+            "deployment.kubernetes.io/revision": "1"
+        },
+        "creationTimestamp": "2026-09-16T12:57:18Z",
+        "deletionGracePeriodSeconds": 0,
+        "deletionTimestamp": "2026-09-16T12:58:18Z",
+        "finalizers": [
+            "audit.garv.dev/hold"
+        ],
+        "generation": 2,
+        "labels": {
+            "app.kubernetes.io/managed-by": "preview-operator",
+            "app.kubernetes.io/name": "held-expiry",
+            "preview.garv.dev/environment-uid": "73007eb7-2005-4cf6-8e9c-10680319d4e8"
+        },
+        "name": "held-expiry",
+        "namespace": "preview-system",
+        "ownerReferences": [
+            {
+                "apiVersion": "preview.garv.dev/v1alpha1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "PreviewEnvironment",
+                "name": "held-expiry",
+                "uid": "73007eb7-2005-4cf6-8e9c-10680319d4e8"
+            }
+        ],
+        "resourceVersion": "1748",
+        "uid": "6bfa1d94-27f9-43a5-93c1-59b67470e2c4"
+    },
+    "spec": {
+        "progressDeadlineSeconds": 120,
+        "replicas": 1,
+        "revisionHistoryLimit": 2,
+        "selector": {
+            "matchLabels": {
+                "preview.garv.dev/environment-uid": "73007eb7-2005-4cf6-8e9c-10680319d4e8"
+            }
+        },
+        "strategy": {
+            "rollingUpdate": {
+                "maxSurge": 1,
+                "maxUnavailable": 0
+            },
+            "type": "RollingUpdate"
+        },
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/managed-by": "preview-operator",
+                    "app.kubernetes.io/name": "held-expiry",
+                    "preview.garv.dev/environment-uid": "73007eb7-2005-4cf6-8e9c-10680319d4e8"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "args": [
+                            "-text=Hello from preview-operator",
+                            "-listen=:8080"
+                        ],
+                        "image": "hashicorp/http-echo:1.0.0",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "app",
+                        "ports": [
+                            {
+                                "containerPort": 8080,
+                                "name": "http",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": "http"
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/tmp",
+                                "name": "tmp"
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": false,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 10001,
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "emptyDir": {
+                            "sizeLimit": "64Mi"
+                        },
+                        "name": "tmp"
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-16T12:57:18Z",
+                "lastUpdateTime": "2026-09-16T12:57:19Z",
+                "message": "ReplicaSet \"held-expiry-6c7594fc59\" has successfully progressed.",
+                "reason": "NewReplicaSetAvailable",
+                "status": "True",
+                "type": "Progressing"
+            },
+            {
+                "lastTransitionTime": "2026-09-16T12:58:18Z",
+                "lastUpdateTime": "2026-09-16T12:58:18Z",
+                "message": "Deployment does not have minimum availability.",
+                "reason": "MinimumReplicasUnavailable",
+                "status": "False",
+                "type": "Available"
+            }
+        ],
+        "observedGeneration": 2,
+        "terminatingReplicas": 0
+    }
+}
+deployment.apps/held-expiry patched
+PASS: cleanup completes after releasing test finalizer
+previewenvironment.preview.garv.dev "held-expiry" deleted from preview-system namespace
+RUN: Expiry across operator downtime and no resurrection
 previewenvironment.preview.garv.dev/short-lived created
 PASS: short-lived preview Ready
 {
@@ -1250,12 +4331,12 @@ PASS: short-lived preview Ready
         "annotations": {
             "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"short-lived\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":60}}\n"
         },
-        "creationTimestamp": "2026-09-15T12:04:10Z",
+        "creationTimestamp": "2026-09-16T12:58:20Z",
         "generation": 1,
         "name": "short-lived",
         "namespace": "preview-system",
-        "resourceVersion": "739",
-        "uid": "cf3ec919-0273-458c-8a40-39b9248e07fb"
+        "resourceVersion": "1790",
+        "uid": "1f740a56-1954-4a40-8dd8-56706b66cf4c"
     },
     "spec": {
         "args": [
@@ -1272,7 +4353,7 @@ PASS: short-lived preview Ready
         "availableReplicas": 1,
         "conditions": [
             {
-                "lastTransitionTime": "2026-09-15T12:04:10Z",
+                "lastTransitionTime": "2026-09-16T12:58:20Z",
                 "message": "All requested replicas are updated and available",
                 "observedGeneration": 1,
                 "reason": "DeploymentAvailable",
@@ -1280,7 +4361,7 @@ PASS: short-lived preview Ready
                 "type": "Ready"
             },
             {
-                "lastTransitionTime": "2026-09-15T12:04:10Z",
+                "lastTransitionTime": "2026-09-16T12:58:20Z",
                 "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
                 "observedGeneration": 1,
                 "reason": "WithinLifetime",
@@ -1289,13 +4370,13 @@ PASS: short-lived preview Ready
             }
         ],
         "endpoint": "http://short-lived.preview-system.svc:80",
-        "expiresAt": "2026-09-15T12:05:10Z",
+        "expiresAt": "2026-09-16T12:59:20Z",
         "observedGeneration": 1,
         "phase": "Ready"
     }
 }
 deployment.apps/preview-operator scaled
-pod/preview-operator-986c4bc49-jzjqx condition met
+pod/preview-operator-986c4bc49-l56v6 condition met
 Operator stopped; waiting for the persisted deadline to pass
 deployment.apps/preview-operator scaled
 Waiting for deployment "preview-operator" rollout to finish: 0 out of 1 new replicas have been updated...
@@ -1310,12 +4391,12 @@ previewenvironment.preview.garv.dev/short-lived patched
         "annotations": {
             "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"short-lived\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":60}}\n"
         },
-        "creationTimestamp": "2026-09-15T12:04:10Z",
+        "creationTimestamp": "2026-09-16T12:58:20Z",
         "generation": 2,
         "name": "short-lived",
         "namespace": "preview-system",
-        "resourceVersion": "914",
-        "uid": "cf3ec919-0273-458c-8a40-39b9248e07fb"
+        "resourceVersion": "1959",
+        "uid": "1f740a56-1954-4a40-8dd8-56706b66cf4c"
     },
     "spec": {
         "args": [
@@ -1331,7 +4412,7 @@ previewenvironment.preview.garv.dev/short-lived patched
     "status": {
         "conditions": [
             {
-                "lastTransitionTime": "2026-09-15T12:05:14Z",
+                "lastTransitionTime": "2026-09-16T12:59:23Z",
                 "message": "Deadline elapsed and all managed resources have been removed",
                 "observedGeneration": 2,
                 "reason": "CleanupComplete",
@@ -1339,7 +4420,7 @@ previewenvironment.preview.garv.dev/short-lived patched
                 "type": "Ready"
             },
             {
-                "lastTransitionTime": "2026-09-15T12:05:14Z",
+                "lastTransitionTime": "2026-09-16T12:59:23Z",
                 "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
                 "observedGeneration": 2,
                 "reason": "DeadlineElapsed",
@@ -1347,7 +4428,7 @@ previewenvironment.preview.garv.dev/short-lived patched
                 "type": "Expired"
             }
         ],
-        "expiresAt": "2026-09-15T12:05:10Z",
+        "expiresAt": "2026-09-16T12:59:20Z",
         "observedGeneration": 2,
         "phase": "Expired"
     }
@@ -1357,14 +4438,15 @@ previewenvironment.preview.garv.dev/short-lived patched
     "kind": "PreviewEnvironment",
     "metadata": {
         "annotations": {
+            "audit.garv.dev/check": "stable",
             "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
         },
-        "creationTimestamp": "2026-09-15T12:03:52Z",
-        "generation": 2,
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 10,
         "name": "hello-preview",
         "namespace": "preview-system",
-        "resourceVersion": "688",
-        "uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+        "resourceVersion": "1469",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
     },
     "spec": {
         "args": [
@@ -1381,56 +4463,58 @@ previewenvironment.preview.garv.dev/short-lived patched
         "availableReplicas": 2,
         "conditions": [
             {
-                "lastTransitionTime": "2026-09-15T12:04:07Z",
+                "lastTransitionTime": "2026-09-16T12:57:01Z",
                 "message": "All requested replicas are updated and available",
-                "observedGeneration": 2,
+                "observedGeneration": 10,
                 "reason": "DeploymentAvailable",
                 "status": "True",
                 "type": "Ready"
             },
             {
-                "lastTransitionTime": "2026-09-15T12:03:52Z",
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
                 "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
-                "observedGeneration": 2,
+                "observedGeneration": 10,
                 "reason": "WithinLifetime",
                 "status": "False",
                 "type": "Expired"
             }
         ],
         "endpoint": "http://hello-preview.preview-system.svc:80",
-        "expiresAt": "2026-09-15T13:03:52Z",
-        "observedGeneration": 2,
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 10,
         "phase": "Ready"
     }
 }
 NAME                                                PHASE     IMAGE                       EXPIRES     AGE
-previewenvironment.preview.garv.dev/hello-preview   Ready     hashicorp/http-echo:1.0.0   <invalid>   91s
-previewenvironment.preview.garv.dev/short-lived     Expired   hashicorp/http-echo:1.0.0   13s         73s
+previewenvironment.preview.garv.dev/hello-preview   Ready     hashicorp/http-echo:1.0.0   <invalid>   5m2s
+previewenvironment.preview.garv.dev/short-lived     Expired   hashicorp/http-echo:1.0.0   12s         72s
 
-NAME                               READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                      SELECTOR
-deployment.apps/hello-preview      2/2     2            2           80s   app          hashicorp/http-echo:1.0.0   preview.garv.dev/environment-uid=b2067644-4259-4fe6-8cad-2258c615768e
-deployment.apps/preview-operator   1/1     1            1           97s   manager      preview-operator:dev        app.kubernetes.io/name=preview-operator
+NAME                               READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS   IMAGES                      SELECTOR
+deployment.apps/hello-preview      2/2     2            2           4m51s   app          hashicorp/http-echo:1.0.0   preview.garv.dev/environment-uid=2ac1ca48-5e42-43c5-a70f-d8cffe649543
+deployment.apps/preview-operator   1/1     1            1           5m8s    manager      preview-operator:dev        app.kubernetes.io/name=preview-operator
 
-NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE   SELECTOR
-service/hello-preview   ClusterIP   10.96.243.90   <none>        80/TCP    80s   preview.garv.dev/environment-uid=b2067644-4259-4fe6-8cad-2258c615768e
+NAME                    TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE     SELECTOR
+service/hello-preview   ClusterIP   10.96.214.9   <none>        80/TCP    2m15s   preview.garv.dev/environment-uid=2ac1ca48-5e42-43c5-a70f-d8cffe649543
 
-NAME                                   READY   STATUS    RESTARTS   AGE   IP            NODE                                 NOMINATED NODE   READINESS GATES
-pod/hello-preview-88cdff694-ggqvd      1/1     Running   0          77s   10.244.0.8    preview-operator-e2e-control-plane   <none>           <none>
-pod/hello-preview-88cdff694-kbrz7      1/1     Running   0          80s   10.244.0.7    preview-operator-e2e-control-plane   <none>           <none>
-pod/preview-operator-986c4bc49-9rsnh   1/1     Running   0          10s   10.244.0.10   preview-operator-e2e-control-plane   <none>           <none>
+NAME                                   READY   STATUS    RESTARTS   AGE     IP            NODE                                 NOMINATED NODE   READINESS GATES
+pod/hello-preview-6fd9b6f56c-fc7td     1/1     Running   0          4m36s   10.244.0.17   preview-operator-e2e-control-plane   <none>           <none>
+pod/hello-preview-6fd9b6f56c-vvvsr     1/1     Running   0          4m36s   10.244.0.16   preview-operator-e2e-control-plane   <none>           <none>
+pod/preview-operator-986c4bc49-pvr7q   1/1     Running   0          10s     10.244.0.23   preview-operator-e2e-control-plane   <none>           <none>
+RUN: Owner-reference garbage collection
 {
     "apiVersion": "preview.garv.dev/v1alpha1",
     "kind": "PreviewEnvironment",
     "metadata": {
         "annotations": {
+            "audit.garv.dev/check": "stable",
             "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
         },
-        "creationTimestamp": "2026-09-15T12:03:52Z",
-        "generation": 2,
+        "creationTimestamp": "2026-09-16T12:54:30Z",
+        "generation": 10,
         "name": "hello-preview",
         "namespace": "preview-system",
-        "resourceVersion": "688",
-        "uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+        "resourceVersion": "1469",
+        "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
     },
     "spec": {
         "args": [
@@ -1447,32 +4531,32 @@ pod/preview-operator-986c4bc49-9rsnh   1/1     Running   0          10s   10.244
         "availableReplicas": 2,
         "conditions": [
             {
-                "lastTransitionTime": "2026-09-15T12:04:07Z",
+                "lastTransitionTime": "2026-09-16T12:57:01Z",
                 "message": "All requested replicas are updated and available",
-                "observedGeneration": 2,
+                "observedGeneration": 10,
                 "reason": "DeploymentAvailable",
                 "status": "True",
                 "type": "Ready"
             },
             {
-                "lastTransitionTime": "2026-09-15T12:03:52Z",
+                "lastTransitionTime": "2026-09-16T12:54:30Z",
                 "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
-                "observedGeneration": 2,
+                "observedGeneration": 10,
                 "reason": "WithinLifetime",
                 "status": "False",
                 "type": "Expired"
             }
         ],
         "endpoint": "http://hello-preview.preview-system.svc:80",
-        "expiresAt": "2026-09-15T13:03:52Z",
-        "observedGeneration": 2,
+        "expiresAt": "2026-09-16T13:54:30Z",
+        "observedGeneration": 10,
         "phase": "Ready"
     }
 }
 previewenvironment.preview.garv.dev "hello-preview" deleted from preview-system namespace
 PASS: owner deletion garbage collects children
-pod/hello-preview-88cdff694-ggqvd condition met
-pod/hello-preview-88cdff694-kbrz7 condition met
+pod/hello-preview-6fd9b6f56c-fc7td condition met
+pod/hello-preview-6fd9b6f56c-vvvsr condition met
 Deleting cluster "preview-operator-e2e" ...
 Deleted nodes: ["preview-operator-e2e-control-plane"]
 Final result: passed; evidence: docs/verification/e2e-report.json

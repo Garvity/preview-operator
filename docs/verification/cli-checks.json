@@ -1,0 +1,21 @@
+[
+  {
+    "arguments": [
+      "--version"
+    ],
+    "exitCode": 0,
+    "output": "dev"
+  },
+  {
+    "arguments": [
+      "--help"
+    ],
+    "exitCode": 0,
+    "output": "Usage of ./bin/manager:\n  -health-probe-bind-address string\n    \tHealth/readiness listener (default \":8081\")\n  -kubeconfig string\n    \tPaths to a kubeconfig. Only required if out-of-cluster.\n  -leader-elect\n    \tEnable leader election (default true)\n  -metrics-bind-address string\n    \tMetrics listener; use 0 to disable (default \"127.0.0.1:8080\")\n  -version\n    \tPrint version and exit\n  -watch-namespace string\n    \tRequired namespace to watch and use for leader election\n  -zap-devel\n    \tDevelopment Mode defaults(encoder=consoleEncoder,logLevel=Debug,stackTraceLevel=Warn). Production Mode defaults(encoder=jsonEncoder,logLevel=Info,stackTraceLevel=Error)\n  -zap-encoder value\n    \tZap log encoding (one of 'json' or 'console')\n  -zap-log-level value\n    \tZap Level to configure the verbosity of logging. Can be one of 'debug', 'info', 'error', 'panic' or any integer value > 0 which corresponds to custom debug levels of increasing verbosity\n  -zap-stacktrace-level value\n    \tZap Level at and above which stacktraces are captured (one of 'info', 'error', 'panic').\n  -zap-time-encoding value\n    \tZap time encoding (one of 'epoch', 'millis', 'nano', 'iso8601', 'rfc3339' or 'rfc3339nano'). Defaults to 'epoch'."
+  },
+  {
+    "arguments": [],
+    "exitCode": 1,
+    "output": "{\"level\":\"error\",\"ts\":\"2026-09-16T18:19:43+05:30\",\"logger\":\"setup\",\"msg\":\"Set --watch-namespace or POD_NAMESPACE\",\"error\":\"watch namespace is required\",\"stacktrace\":\"main.main\\n\\tgithub.com/Garvity/preview-operator/cmd/manager/main.go:43\\nruntime.main\\n\\truntime/proc.go:302\"}"
+  }
+]

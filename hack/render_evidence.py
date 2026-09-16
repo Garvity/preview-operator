@@ -6,6 +6,7 @@ These are diagrams/evidence summaries, not screenshots of a graphical operator U
 """
 import html
 import json
+import textwrap
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -89,35 +90,36 @@ def final_output():
     summary = json.loads((ROOT/"docs/verification/summary.json").read_text())
     passed = report["status"] == "passed"
     checks = report["checks"]
-    c = Canvas(1260)
+    rows = (len(checks) + 1) // 2
+    panel_y = 425 + rows * 108 + 28
+    c = Canvas(panel_y + 375)
     c.text(70,50,"PREVIEW OPERATOR  /  MEASURED VERIFICATION",20,TEAL,True)
     c.text(70,105,"Temporary environments, verified end to end.",49,WHITE,True)
     c.text(70,180,"Actual kind-cluster results. This is an evidence summary, not an application UI.",25,MUTED)
-    for x,value,label in [(70,f"{sum(check['status'] == 'passed' for check in checks)} / 8","live checks passed"),
+    for x,value,label in [(70,f"{sum(check['status'] == 'passed' for check in checks)} / {report.get('expectedChecks', len(checks))}","live checks passed"),
                           (575,summary["controllerCoverage"],"controller statement coverage"),
                           (1080,report.get("kubernetes","unknown"),"Kubernetes tested")]:
         c.rect(x,245,450,145)
         c.text(x+25,273,value,48,TEAL if passed else "#ff8a91",True)
         c.text(x+25,340,label,23,MUTED)
-    short_names = ["Provisioning + HTTP response", "Deleted resources recover", "Spec updates + readiness", "Foreign ownership protected",
-                   "RBAC + security defaults", "Prometheus metrics", "Expiry across manager downtime", "Garbage collection"]
     for i,check in enumerate(checks):
         x = 70+(i%2)*745
         y = 425+(i//2)*108
         c.rect(x,y,715,89,radius=14)
         c.text(x+22,y+18,"PASS" if check["status"]=="passed" else "FAIL",18,TEAL,True)
-        c.text(x+102,y+17,short_names[i] if i<len(short_names) else check["name"],23,WHITE,True)
-        c.text(x+102,y+51,f"{check['seconds']:.2f}s  •  observed in the live test cluster",18,MUTED)
-    c.rect(70,885,1460,235)
-    c.text(100,909,"OBSERVED OUTPUT",18,PURPLE,True)
-    c.text(100,952,report.get("httpResponse","No HTTP response recorded"),29,WHITE,False,True)
+        for line_index, line in enumerate(textwrap.wrap(check["name"], width=43)[:2]):
+            c.text(x+102,y+12+line_index*24,line,21,WHITE,True)
+        c.text(x+102,y+65,f"{check['seconds']:.2f}s  •  observed in the live test cluster",15,MUTED)
+    c.rect(70,panel_y,1460,235)
+    c.text(100,panel_y+24,"OBSERVED OUTPUT",18,PURPLE,True)
+    c.text(100,panel_y+67,report.get("httpResponse","No HTTP response recorded"),29,WHITE,False,True)
     ready = report.get("readyPreview",{}).get("status",{})
     expired = report.get("expiredPreview",{}).get("status",{})
-    c.text(100,1003,f"hello-preview   {ready.get('phase','unknown')}   available replicas: {ready.get('availableReplicas',0)}",23,TEAL,False,True)
-    c.text(100,1046,f"short-lived     {expired.get('phase','unknown')}   Deployment + Service removed",23,TEAL,False,True)
+    c.text(100,panel_y+118,f"hello-preview   {ready.get('phase','unknown')}   available replicas: {ready.get('availableReplicas',0)}",23,TEAL,False,True)
+    c.text(100,panel_y+161,f"short-lived     {expired.get('phase','unknown')}   Deployment + Service removed",23,TEAL,False,True)
     stamp=report["finishedAt"].replace("T"," ").split(".")[0]+" UTC"
-    c.text(70,1160,f"Executed {stamp}  •  Local test cluster {'removed' if report.get('clusterCleanedUp') else 'retained'}",20,MUTED)
-    c.text(70,1200,"Source: docs/verification/e2e-report.json • API-server integration + unit/race checks also passed.",19,MUTED)
+    c.text(70,panel_y+275,f"Executed {stamp}  •  Local test cluster {'removed' if report.get('clusterCleanedUp') else 'retained'}",20,MUTED)
+    c.text(70,panel_y+315,"Source: docs/verification/e2e-report.json • API-server integration + unit/race checks also passed.",19,MUTED)
     c.save("final-output")
 
 

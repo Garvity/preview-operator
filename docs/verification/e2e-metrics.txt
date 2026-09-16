@@ -15,16 +15,16 @@ controller_runtime_conversion_webhook_panics_total 0
 controller_runtime_max_concurrent_reconciles{controller="previewenvironment"} 1
 # HELP controller_runtime_reconcile_errors_total Total number of reconciliation errors per controller
 # TYPE controller_runtime_reconcile_errors_total counter
-controller_runtime_reconcile_errors_total{controller="previewenvironment"} 1
+controller_runtime_reconcile_errors_total{controller="previewenvironment"} 2
 # HELP controller_runtime_reconcile_panics_total Total number of reconciliation panics per controller
 # TYPE controller_runtime_reconcile_panics_total counter
 controller_runtime_reconcile_panics_total{controller="previewenvironment"} 0
 # HELP controller_runtime_reconcile_time_seconds Length of time per reconciliation per controller
 # TYPE controller_runtime_reconcile_time_seconds histogram
-controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.005"} 15
-controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.01"} 17
-controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.025"} 21
-controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.05"} 21
+controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.005"} 13
+controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.01"} 15
+controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.025"} 20
+controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.05"} 23
 controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.1"} 23
 controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.15"} 23
 controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="0.2"} 23
@@ -62,16 +62,16 @@ controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment"
 controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="50"} 23
 controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="60"} 23
 controller_runtime_reconcile_time_seconds_bucket{controller="previewenvironment",le="+Inf"} 23
-controller_runtime_reconcile_time_seconds_sum{controller="previewenvironment"} 0.19719901400000006
+controller_runtime_reconcile_time_seconds_sum{controller="previewenvironment"} 0.23712870000000003
 controller_runtime_reconcile_time_seconds_count{controller="previewenvironment"} 23
 # HELP controller_runtime_reconcile_timeouts_total Total number of reconciliation timeouts per controller
 # TYPE controller_runtime_reconcile_timeouts_total counter
 controller_runtime_reconcile_timeouts_total{controller="previewenvironment"} 0
 # HELP controller_runtime_reconcile_total Total number of reconciliations per controller
 # TYPE controller_runtime_reconcile_total counter
-controller_runtime_reconcile_total{controller="previewenvironment",result="error"} 1
+controller_runtime_reconcile_total{controller="previewenvironment",result="error"} 2
 controller_runtime_reconcile_total{controller="previewenvironment",result="requeue"} 0
-controller_runtime_reconcile_total{controller="previewenvironment",result="requeue_after"} 21
+controller_runtime_reconcile_total{controller="previewenvironment",result="requeue_after"} 20
 controller_runtime_reconcile_total{controller="previewenvironment",result="success"} 1
 # HELP controller_runtime_terminal_reconcile_errors_total Total number of terminal reconciliation errors per controller
 # TYPE controller_runtime_terminal_reconcile_errors_total counter
@@ -84,37 +84,37 @@ controller_runtime_webhook_panics_total 0
 go_cgo_go_to_c_calls_calls_total 0
 # HELP go_cpu_classes_gc_mark_assist_cpu_seconds_total Estimated total CPU time goroutines spent performing GC tasks to assist the GC and prevent it from falling behind the application. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sourced from /cpu/classes/gc/mark/assist:cpu-seconds.
 # TYPE go_cpu_classes_gc_mark_assist_cpu_seconds_total counter
-go_cpu_classes_gc_mark_assist_cpu_seconds_total 0.003084763
+go_cpu_classes_gc_mark_assist_cpu_seconds_total 0.001929788
 # HELP go_cpu_classes_gc_mark_dedicated_cpu_seconds_total Estimated total CPU time spent performing GC tasks on processors (as defined by GOMAXPROCS) dedicated to those tasks. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sourced from /cpu/classes/gc/mark/dedicated:cpu-seconds.
 # TYPE go_cpu_classes_gc_mark_dedicated_cpu_seconds_total counter
-go_cpu_classes_gc_mark_dedicated_cpu_seconds_total 0.010065718
+go_cpu_classes_gc_mark_dedicated_cpu_seconds_total 0.006016318
 # HELP go_cpu_classes_gc_mark_idle_cpu_seconds_total Estimated total CPU time spent performing GC tasks on spare CPU resources that the Go scheduler could not otherwise find a use for. This should be subtracted from the total GC CPU time to obtain a measure of compulsory GC CPU time. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sourced from /cpu/classes/gc/mark/idle:cpu-seconds.
 # TYPE go_cpu_classes_gc_mark_idle_cpu_seconds_total counter
-go_cpu_classes_gc_mark_idle_cpu_seconds_total 0.004932466
+go_cpu_classes_gc_mark_idle_cpu_seconds_total 0.003186359
 # HELP go_cpu_classes_gc_pause_cpu_seconds_total Estimated total CPU time spent with the application paused by the GC. Even if only one thread is running during the pause, this is computed as GOMAXPROCS times the pause latency because nothing else can be executing. This is the exact sum of samples in /sched/pauses/total/gc:seconds if each sample is multiplied by GOMAXPROCS at the time it is taken. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sourced from /cpu/classes/gc/pause:cpu-seconds.
 # TYPE go_cpu_classes_gc_pause_cpu_seconds_total counter
-go_cpu_classes_gc_pause_cpu_seconds_total 0.008188268
+go_cpu_classes_gc_pause_cpu_seconds_total 0.003853078
 # HELP go_cpu_classes_gc_total_cpu_seconds_total Estimated total CPU time spent performing GC tasks. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sum of all metrics in /cpu/classes/gc. Sourced from /cpu/classes/gc/total:cpu-seconds.
 # TYPE go_cpu_classes_gc_total_cpu_seconds_total counter
-go_cpu_classes_gc_total_cpu_seconds_total 0.026271215
+go_cpu_classes_gc_total_cpu_seconds_total 0.014985543
 # HELP go_cpu_classes_idle_cpu_seconds_total Estimated total available CPU time not spent executing any Go or Go runtime code. In other words, the part of /cpu/classes/total:cpu-seconds that was unused. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sourced from /cpu/classes/idle:cpu-seconds.
 # TYPE go_cpu_classes_idle_cpu_seconds_total counter
-go_cpu_classes_idle_cpu_seconds_total 44.32126451
+go_cpu_classes_idle_cpu_seconds_total 40.289014046
 # HELP go_cpu_classes_scavenge_assist_cpu_seconds_total Estimated total CPU time spent returning unused memory to the underlying platform in response eagerly to memory pressure. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sourced from /cpu/classes/scavenge/assist:cpu-seconds.
 # TYPE go_cpu_classes_scavenge_assist_cpu_seconds_total counter
-go_cpu_classes_scavenge_assist_cpu_seconds_total 2.08e-07
+go_cpu_classes_scavenge_assist_cpu_seconds_total 2.5e-07
 # HELP go_cpu_classes_scavenge_background_cpu_seconds_total Estimated total CPU time spent performing background tasks to return unused memory to the underlying platform. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sourced from /cpu/classes/scavenge/background:cpu-seconds.
 # TYPE go_cpu_classes_scavenge_background_cpu_seconds_total counter
-go_cpu_classes_scavenge_background_cpu_seconds_total 2.5e-07
+go_cpu_classes_scavenge_background_cpu_seconds_total 3.33e-07
 # HELP go_cpu_classes_scavenge_total_cpu_seconds_total Estimated total CPU time spent performing tasks that return unused memory to the underlying platform. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sum of all metrics in /cpu/classes/scavenge. Sourced from /cpu/classes/scavenge/total:cpu-seconds.
 # TYPE go_cpu_classes_scavenge_total_cpu_seconds_total counter
-go_cpu_classes_scavenge_total_cpu_seconds_total 4.58e-07
+go_cpu_classes_scavenge_total_cpu_seconds_total 5.83e-07
 # HELP go_cpu_classes_total_cpu_seconds_total Estimated total available CPU time for user Go code or the Go runtime, as defined by GOMAXPROCS. In other words, GOMAXPROCS integrated over the wall-clock duration this process has been executing for. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sum of all metrics in /cpu/classes. Sourced from /cpu/classes/total:cpu-seconds.
 # TYPE go_cpu_classes_total_cpu_seconds_total counter
-go_cpu_classes_total_cpu_seconds_total 44.599738112
+go_cpu_classes_total_cpu_seconds_total 40.51207299
 # HELP go_cpu_classes_user_cpu_seconds_total Estimated total CPU time spent running user Go code. This may also include some small amount of time spent in the Go runtime. This metric is an overestimate, and not directly comparable to system CPU time measurements. Compare only with other /cpu/classes metrics. Sourced from /cpu/classes/user:cpu-seconds.
 # TYPE go_cpu_classes_user_cpu_seconds_total counter
-go_cpu_classes_user_cpu_seconds_total 0.252201929
+go_cpu_classes_user_cpu_seconds_total 0.208072818
 # HELP go_gc_cleanups_executed_cleanups_total Approximate total count of cleanup functions (created by runtime.AddCleanup) executed by the runtime. Subtract /gc/cleanups/queued:cleanups to approximate cleanup queue length. Useful for detecting slow cleanups holding up the queue. Sourced from /gc/cleanups/executed:cleanups.
 # TYPE go_gc_cleanups_executed_cleanups_total counter
 go_gc_cleanups_executed_cleanups_total 0
@@ -132,12 +132,12 @@ go_gc_cycles_forced_gc_cycles_total 0
 go_gc_cycles_total_gc_cycles_total 4
 # HELP go_gc_duration_seconds A summary of the wall-time pause (stop-the-world) duration in garbage collection cycles.
 # TYPE go_gc_duration_seconds summary
-go_gc_duration_seconds{quantile="0"} 2.6583e-05
-go_gc_duration_seconds{quantile="0.25"} 0.000266035
-go_gc_duration_seconds{quantile="0.5"} 0.000543696
-go_gc_duration_seconds{quantile="0.75"} 0.004206068
-go_gc_duration_seconds{quantile="1"} 0.004206068
-go_gc_duration_seconds_sum 0.005042382
+go_gc_duration_seconds{quantile="0"} 2.4124e-05
+go_gc_duration_seconds{quantile="0.25"} 0.000409816
+go_gc_duration_seconds{quantile="0.5"} 0.000788007
+go_gc_duration_seconds{quantile="0.75"} 0.001179405
+go_gc_duration_seconds{quantile="1"} 0.001179405
+go_gc_duration_seconds_sum 0.002401352
 go_gc_duration_seconds_count 4
 # HELP go_gc_finalizers_executed_finalizers_total Total count of finalizer functions (created by runtime.SetFinalizer) executed by the runtime. Subtract /gc/finalizers/queued:finalizers to approximate finalizer queue length. Useful for detecting finalizers overwhelming the queue, either by being too slow, or by there being too many of them. Sourced from /gc/finalizers/executed:finalizers.
 # TYPE go_gc_finalizers_executed_finalizers_total counter
@@ -153,60 +153,60 @@ go_gc_gogc_percent 100
 go_gc_gomemlimit_bytes 9.223372036854776e+18
 # HELP go_gc_heap_allocs_by_size_bytes Distribution of heap allocations by approximate size. Bucket counts increase monotonically. Note that this does not include tiny objects as defined by /gc/heap/tiny/allocs:objects, only tiny blocks. Sourced from /gc/heap/allocs-by-size:bytes.
 # TYPE go_gc_heap_allocs_by_size_bytes histogram
-go_gc_heap_allocs_by_size_bytes_bucket{le="8.999999999999998"} 3459
-go_gc_heap_allocs_by_size_bytes_bucket{le="24.999999999999996"} 25582
-go_gc_heap_allocs_by_size_bytes_bucket{le="64.99999999999999"} 54590
-go_gc_heap_allocs_by_size_bytes_bucket{le="144.99999999999997"} 63873
-go_gc_heap_allocs_by_size_bytes_bucket{le="320.99999999999994"} 68480
-go_gc_heap_allocs_by_size_bytes_bucket{le="704.9999999999999"} 70797
-go_gc_heap_allocs_by_size_bytes_bucket{le="1536.9999999999998"} 71630
-go_gc_heap_allocs_by_size_bytes_bucket{le="3200.9999999999995"} 72127
-go_gc_heap_allocs_by_size_bytes_bucket{le="6528.999999999999"} 72280
-go_gc_heap_allocs_by_size_bytes_bucket{le="13568.999999999998"} 72309
-go_gc_heap_allocs_by_size_bytes_bucket{le="27264.999999999996"} 72332
-go_gc_heap_allocs_by_size_bytes_bucket{le="+Inf"} 72357
-go_gc_heap_allocs_by_size_bytes_sum 1.01748e+07
-go_gc_heap_allocs_by_size_bytes_count 72357
+go_gc_heap_allocs_by_size_bytes_bucket{le="8.999999999999998"} 3408
+go_gc_heap_allocs_by_size_bytes_bucket{le="24.999999999999996"} 25138
+go_gc_heap_allocs_by_size_bytes_bucket{le="64.99999999999999"} 53767
+go_gc_heap_allocs_by_size_bytes_bucket{le="144.99999999999997"} 62823
+go_gc_heap_allocs_by_size_bytes_bucket{le="320.99999999999994"} 67362
+go_gc_heap_allocs_by_size_bytes_bucket{le="704.9999999999999"} 69580
+go_gc_heap_allocs_by_size_bytes_bucket{le="1536.9999999999998"} 70406
+go_gc_heap_allocs_by_size_bytes_bucket{le="3200.9999999999995"} 70899
+go_gc_heap_allocs_by_size_bytes_bucket{le="6528.999999999999"} 71050
+go_gc_heap_allocs_by_size_bytes_bucket{le="13568.999999999998"} 71079
+go_gc_heap_allocs_by_size_bytes_bucket{le="27264.999999999996"} 71102
+go_gc_heap_allocs_by_size_bytes_bucket{le="+Inf"} 71127
+go_gc_heap_allocs_by_size_bytes_sum 1.0046512e+07
+go_gc_heap_allocs_by_size_bytes_count 71127
 # HELP go_gc_heap_allocs_bytes_total Cumulative sum of memory allocated to the heap by the application. Sourced from /gc/heap/allocs:bytes.
 # TYPE go_gc_heap_allocs_bytes_total counter
-go_gc_heap_allocs_bytes_total 1.01748e+07
+go_gc_heap_allocs_bytes_total 1.0046512e+07
 # HELP go_gc_heap_allocs_objects_total Cumulative count of heap allocations triggered by the application. Note that this does not include tiny objects as defined by /gc/heap/tiny/allocs:objects, only tiny blocks. Sourced from /gc/heap/allocs:objects.
 # TYPE go_gc_heap_allocs_objects_total counter
-go_gc_heap_allocs_objects_total 72357
+go_gc_heap_allocs_objects_total 71127
 # HELP go_gc_heap_frees_by_size_bytes Distribution of freed heap allocations by approximate size. Bucket counts increase monotonically. Note that this does not include tiny objects as defined by /gc/heap/tiny/allocs:objects, only tiny blocks. Sourced from /gc/heap/frees-by-size:bytes.
 # TYPE go_gc_heap_frees_by_size_bytes histogram
-go_gc_heap_frees_by_size_bytes_bucket{le="8.999999999999998"} 2604
-go_gc_heap_frees_by_size_bytes_bucket{le="24.999999999999996"} 20688
-go_gc_heap_frees_by_size_bytes_bucket{le="64.99999999999999"} 43009
-go_gc_heap_frees_by_size_bytes_bucket{le="144.99999999999997"} 50409
-go_gc_heap_frees_by_size_bytes_bucket{le="320.99999999999994"} 52992
-go_gc_heap_frees_by_size_bytes_bucket{le="704.9999999999999"} 54884
-go_gc_heap_frees_by_size_bytes_bucket{le="1536.9999999999998"} 55489
-go_gc_heap_frees_by_size_bytes_bucket{le="3200.9999999999995"} 55857
-go_gc_heap_frees_by_size_bytes_bucket{le="6528.999999999999"} 55947
-go_gc_heap_frees_by_size_bytes_bucket{le="13568.999999999998"} 55963
-go_gc_heap_frees_by_size_bytes_bucket{le="27264.999999999996"} 55968
-go_gc_heap_frees_by_size_bytes_bucket{le="+Inf"} 55972
-go_gc_heap_frees_by_size_bytes_sum 6.248024e+06
-go_gc_heap_frees_by_size_bytes_count 55972
+go_gc_heap_frees_by_size_bytes_bucket{le="8.999999999999998"} 2563
+go_gc_heap_frees_by_size_bytes_bucket{le="24.999999999999996"} 19401
+go_gc_heap_frees_by_size_bytes_bucket{le="64.99999999999999"} 40413
+go_gc_heap_frees_by_size_bytes_bucket{le="144.99999999999997"} 47565
+go_gc_heap_frees_by_size_bytes_bucket{le="320.99999999999994"} 49979
+go_gc_heap_frees_by_size_bytes_bucket{le="704.9999999999999"} 51756
+go_gc_heap_frees_by_size_bytes_bucket{le="1536.9999999999998"} 52335
+go_gc_heap_frees_by_size_bytes_bucket{le="3200.9999999999995"} 52684
+go_gc_heap_frees_by_size_bytes_bucket{le="6528.999999999999"} 52769
+go_gc_heap_frees_by_size_bytes_bucket{le="13568.999999999998"} 52785
+go_gc_heap_frees_by_size_bytes_bucket{le="27264.999999999996"} 52790
+go_gc_heap_frees_by_size_bytes_bucket{le="+Inf"} 52794
+go_gc_heap_frees_by_size_bytes_sum 5.934e+06
+go_gc_heap_frees_by_size_bytes_count 52794
 # HELP go_gc_heap_frees_bytes_total Cumulative sum of heap memory freed by the garbage collector. Sourced from /gc/heap/frees:bytes.
 # TYPE go_gc_heap_frees_bytes_total counter
-go_gc_heap_frees_bytes_total 6.248024e+06
+go_gc_heap_frees_bytes_total 5.934e+06
 # HELP go_gc_heap_frees_objects_total Cumulative count of heap allocations whose storage was freed by the garbage collector. Note that this does not include tiny objects as defined by /gc/heap/tiny/allocs:objects, only tiny blocks. Sourced from /gc/heap/frees:objects.
 # TYPE go_gc_heap_frees_objects_total counter
-go_gc_heap_frees_objects_total 55972
+go_gc_heap_frees_objects_total 52794
 # HELP go_gc_heap_goal_bytes Heap size target for the end of the GC cycle. Sourced from /gc/heap/goal:bytes.
 # TYPE go_gc_heap_goal_bytes gauge
-go_gc_heap_goal_bytes 8.234746e+06
+go_gc_heap_goal_bytes 8.237066e+06
 # HELP go_gc_heap_live_bytes Heap memory occupied by live objects that were marked by the previous GC. Sourced from /gc/heap/live:bytes.
 # TYPE go_gc_heap_live_bytes gauge
-go_gc_heap_live_bytes 3.906328e+06
+go_gc_heap_live_bytes 3.907984e+06
 # HELP go_gc_heap_objects_objects Number of objects, live or unswept, occupying heap memory. Sourced from /gc/heap/objects:objects.
 # TYPE go_gc_heap_objects_objects gauge
-go_gc_heap_objects_objects 16385
+go_gc_heap_objects_objects 18333
 # HELP go_gc_heap_tiny_allocs_objects_total Count of small allocations that are packed together into blocks. These allocations are counted separately from other allocations because each individual allocation is not tracked by the runtime, only their block. Each block is already accounted for in allocs-by-size and frees-by-size. Sourced from /gc/heap/tiny/allocs:objects.
 # TYPE go_gc_heap_tiny_allocs_objects_total counter
-go_gc_heap_tiny_allocs_objects_total 6349
+go_gc_heap_tiny_allocs_objects_total 6051
 # HELP go_gc_limiter_last_enabled_gc_cycle GC cycle the last time the GC CPU limiter was enabled. This metric is useful for diagnosing the root cause of an out-of-memory error, because the limiter trades memory for CPU time when the GC's CPU time gets too high. This is most likely to occur with use of SetMemoryLimit. The first GC cycle is cycle 1, so a value of 0 indicates that it was never enabled. Sourced from /gc/limiter/last-enabled:gc-cycle.
 # TYPE go_gc_limiter_last_enabled_gc_cycle gauge
 go_gc_limiter_last_enabled_gc_cycle 0
@@ -214,26 +214,26 @@ go_gc_limiter_last_enabled_gc_cycle 0
 # TYPE go_gc_pauses_seconds histogram
 go_gc_pauses_seconds_bucket{le="6.399999999999999e-08"} 0
 go_gc_pauses_seconds_bucket{le="6.399999999999999e-07"} 0
-go_gc_pauses_seconds_bucket{le="7.167999999999999e-06"} 2
+go_gc_pauses_seconds_bucket{le="7.167999999999999e-06"} 3
 go_gc_pauses_seconds_bucket{le="8.191999999999999e-05"} 5
 go_gc_pauses_seconds_bucket{le="0.0009175039999999999"} 7
 go_gc_pauses_seconds_bucket{le="0.010485759999999998"} 8
 go_gc_pauses_seconds_bucket{le="0.11744051199999998"} 8
 go_gc_pauses_seconds_bucket{le="+Inf"} 8
-go_gc_pauses_seconds_sum 0.001104128
+go_gc_pauses_seconds_sum 0.0010976
 go_gc_pauses_seconds_count 8
 # HELP go_gc_scan_globals_bytes The total amount of global variable space that is scannable. Sourced from /gc/scan/globals:bytes.
 # TYPE go_gc_scan_globals_bytes gauge
 go_gc_scan_globals_bytes 341514
 # HELP go_gc_scan_heap_bytes The total amount of heap space that is scannable. Sourced from /gc/scan/heap:bytes.
 # TYPE go_gc_scan_heap_bytes gauge
-go_gc_scan_heap_bytes 2.678776e+06
+go_gc_scan_heap_bytes 2.88024e+06
 # HELP go_gc_scan_stack_bytes The number of bytes of stack that were scanned last GC cycle. Sourced from /gc/scan/stack:bytes.
 # TYPE go_gc_scan_stack_bytes gauge
-go_gc_scan_stack_bytes 80576
+go_gc_scan_stack_bytes 79584
 # HELP go_gc_scan_total_bytes The total amount space that is scannable. Sum of all metrics in /gc/scan. Sourced from /gc/scan/total:bytes.
 # TYPE go_gc_scan_total_bytes gauge
-go_gc_scan_total_bytes 3.100866e+06
+go_gc_scan_total_bytes 3.301338e+06
 # HELP go_gc_stack_starting_size_bytes The stack size of new goroutines. Sourced from /gc/stack/starting-size:bytes.
 # TYPE go_gc_stack_starting_size_bytes gauge
 go_gc_stack_starting_size_bytes 2048
@@ -362,25 +362,25 @@ go_godebug_non_default_behavior_x509usepolicies_events_total 0
 go_godebug_non_default_behavior_zipinsecurepath_events_total 0
 # HELP go_goroutines Number of goroutines that currently exist.
 # TYPE go_goroutines gauge
-go_goroutines 83
+go_goroutines 82
 # HELP go_info Information about the Go environment.
 # TYPE go_info gauge
 go_info{version="go1.27.1"} 1
 # HELP go_memory_classes_heap_free_bytes Memory that is completely free and eligible to be returned to the underlying system, but has not been. This metric is the runtime's estimate of free address space that is backed by physical memory. Sourced from /memory/classes/heap/free:bytes.
 # TYPE go_memory_classes_heap_free_bytes gauge
-go_memory_classes_heap_free_bytes 1.523712e+06
+go_memory_classes_heap_free_bytes 1.417216e+06
 # HELP go_memory_classes_heap_objects_bytes Memory occupied by live objects and dead objects that have not yet been marked free by the garbage collector. Sourced from /memory/classes/heap/objects:bytes.
 # TYPE go_memory_classes_heap_objects_bytes gauge
-go_memory_classes_heap_objects_bytes 3.926776e+06
+go_memory_classes_heap_objects_bytes 4.112512e+06
 # HELP go_memory_classes_heap_released_bytes Memory that is completely free and has been returned to the underlying system. This metric is the runtime's estimate of free address space that is still mapped into the process, but is not backed by physical memory. Sourced from /memory/classes/heap/released:bytes.
 # TYPE go_memory_classes_heap_released_bytes gauge
-go_memory_classes_heap_released_bytes 3.473408e+06
+go_memory_classes_heap_released_bytes 3.620864e+06
 # HELP go_memory_classes_heap_stacks_bytes Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. Currently, this represents all stack memory for goroutines. It also includes all OS thread stacks in non-cgo programs. Note that stacks may be allocated differently in the future, and this may change. Sourced from /memory/classes/heap/stacks:bytes.
 # TYPE go_memory_classes_heap_stacks_bytes gauge
 go_memory_classes_heap_stacks_bytes 950272
 # HELP go_memory_classes_heap_unused_bytes Memory that is reserved for heap objects but is not currently used to hold heap objects. Sourced from /memory/classes/heap/unused:bytes.
 # TYPE go_memory_classes_heap_unused_bytes gauge
-go_memory_classes_heap_unused_bytes 2.708744e+06
+go_memory_classes_heap_unused_bytes 2.482048e+06
 # HELP go_memory_classes_metadata_mcache_free_bytes Memory that is reserved for runtime mcache structures, but not in-use. Sourced from /memory/classes/metadata/mcache/free:bytes.
 # TYPE go_memory_classes_metadata_mcache_free_bytes gauge
 go_memory_classes_metadata_mcache_free_bytes 11480
@@ -389,64 +389,64 @@ go_memory_classes_metadata_mcache_free_bytes 11480
 go_memory_classes_metadata_mcache_inuse_bytes 4592
 # HELP go_memory_classes_metadata_mspan_free_bytes Memory that is reserved for runtime mspan structures, but not in-use. Sourced from /memory/classes/metadata/mspan/free:bytes.
 # TYPE go_memory_classes_metadata_mspan_free_bytes gauge
-go_memory_classes_metadata_mspan_free_bytes 10240
+go_memory_classes_metadata_mspan_free_bytes 9760
 # HELP go_memory_classes_metadata_mspan_inuse_bytes Memory that is occupied by runtime mspan structures that are currently being used. Sourced from /memory/classes/metadata/mspan/inuse:bytes.
 # TYPE go_memory_classes_metadata_mspan_inuse_bytes gauge
-go_memory_classes_metadata_mspan_inuse_bytes 120320
+go_memory_classes_metadata_mspan_inuse_bytes 120800
 # HELP go_memory_classes_metadata_other_bytes Memory that is reserved for or used to hold runtime metadata. Sourced from /memory/classes/metadata/other:bytes.
 # TYPE go_memory_classes_metadata_other_bytes gauge
-go_memory_classes_metadata_other_bytes 3.642608e+06
+go_memory_classes_metadata_other_bytes 3.635952e+06
 # HELP go_memory_classes_os_stacks_bytes Stack memory allocated by the underlying operating system. In non-cgo programs this metric is currently zero. This may change in the future.In cgo programs this metric includes OS thread stacks allocated directly from the OS. Currently, this only accounts for one stack in c-shared and c-archive build modes, and other sources of stacks from the OS are not measured. This too may change in the future. Sourced from /memory/classes/os-stacks:bytes.
 # TYPE go_memory_classes_os_stacks_bytes gauge
 go_memory_classes_os_stacks_bytes 0
 # HELP go_memory_classes_other_bytes Memory used by execution trace buffers, structures for debugging the runtime, finalizer and profiler specials, and more. Sourced from /memory/classes/other:bytes.
 # TYPE go_memory_classes_other_bytes gauge
-go_memory_classes_other_bytes 631709
+go_memory_classes_other_bytes 639437
 # HELP go_memory_classes_profiling_buckets_bytes Memory that is used by the stack trace hash map used for profiling. Sourced from /memory/classes/profiling/buckets:bytes.
 # TYPE go_memory_classes_profiling_buckets_bytes gauge
-go_memory_classes_profiling_buckets_bytes 1.450931e+06
+go_memory_classes_profiling_buckets_bytes 1.449859e+06
 # HELP go_memory_classes_total_bytes All memory mapped by the Go runtime into the current process as read-write. Note that this does not include memory mapped by code called via cgo or via the syscall package. Sum of all metrics in /memory/classes. Sourced from /memory/classes/total:bytes.
 # TYPE go_memory_classes_total_bytes gauge
 go_memory_classes_total_bytes 1.8454792e+07
 # HELP go_memstats_alloc_bytes Number of bytes allocated in heap and currently in use. Equals to /memory/classes/heap/objects:bytes.
 # TYPE go_memstats_alloc_bytes gauge
-go_memstats_alloc_bytes 3.926776e+06
+go_memstats_alloc_bytes 4.112512e+06
 # HELP go_memstats_alloc_bytes_total Total number of bytes allocated in heap until now, even if released already. Equals to /gc/heap/allocs:bytes.
 # TYPE go_memstats_alloc_bytes_total counter
-go_memstats_alloc_bytes_total 1.01748e+07
+go_memstats_alloc_bytes_total 1.0046512e+07
 # HELP go_memstats_buck_hash_sys_bytes Number of bytes used by the profiling bucket hash table. Equals to /memory/classes/profiling/buckets:bytes.
 # TYPE go_memstats_buck_hash_sys_bytes gauge
-go_memstats_buck_hash_sys_bytes 1.450931e+06
+go_memstats_buck_hash_sys_bytes 1.449859e+06
 # HELP go_memstats_frees_total Total number of heap objects frees. Equals to /gc/heap/frees:objects + /gc/heap/tiny/allocs:objects.
 # TYPE go_memstats_frees_total counter
-go_memstats_frees_total 62321
+go_memstats_frees_total 58845
 # HELP go_memstats_gc_sys_bytes Number of bytes used for garbage collection system metadata. Equals to /memory/classes/metadata/other:bytes.
 # TYPE go_memstats_gc_sys_bytes gauge
-go_memstats_gc_sys_bytes 3.642608e+06
+go_memstats_gc_sys_bytes 3.635952e+06
 # HELP go_memstats_heap_alloc_bytes Number of heap bytes allocated and currently in use, same as go_memstats_alloc_bytes. Equals to /memory/classes/heap/objects:bytes.
 # TYPE go_memstats_heap_alloc_bytes gauge
-go_memstats_heap_alloc_bytes 3.926776e+06
+go_memstats_heap_alloc_bytes 4.112512e+06
 # HELP go_memstats_heap_idle_bytes Number of heap bytes waiting to be used. Equals to /memory/classes/heap/released:bytes + /memory/classes/heap/free:bytes.
 # TYPE go_memstats_heap_idle_bytes gauge
-go_memstats_heap_idle_bytes 4.99712e+06
+go_memstats_heap_idle_bytes 5.03808e+06
 # HELP go_memstats_heap_inuse_bytes Number of heap bytes that are in use. Equals to /memory/classes/heap/objects:bytes + /memory/classes/heap/unused:bytes
 # TYPE go_memstats_heap_inuse_bytes gauge
-go_memstats_heap_inuse_bytes 6.63552e+06
+go_memstats_heap_inuse_bytes 6.59456e+06
 # HELP go_memstats_heap_objects Number of currently allocated objects. Equals to /gc/heap/objects:objects.
 # TYPE go_memstats_heap_objects gauge
-go_memstats_heap_objects 16385
+go_memstats_heap_objects 18333
 # HELP go_memstats_heap_released_bytes Number of heap bytes released to OS. Equals to /memory/classes/heap/released:bytes.
 # TYPE go_memstats_heap_released_bytes gauge
-go_memstats_heap_released_bytes 3.473408e+06
+go_memstats_heap_released_bytes 3.620864e+06
 # HELP go_memstats_heap_sys_bytes Number of heap bytes obtained from system. Equals to /memory/classes/heap/objects:bytes + /memory/classes/heap/unused:bytes + /memory/classes/heap/released:bytes + /memory/classes/heap/free:bytes.
 # TYPE go_memstats_heap_sys_bytes gauge
 go_memstats_heap_sys_bytes 1.163264e+07
 # HELP go_memstats_last_gc_time_seconds Number of seconds since 1970 of last garbage collection.
 # TYPE go_memstats_last_gc_time_seconds gauge
-go_memstats_last_gc_time_seconds 1.7894738490547376e+09
+go_memstats_last_gc_time_seconds 1.7895632851875548e+09
 # HELP go_memstats_mallocs_total Total number of heap objects allocated, both live and gc-ed. Semantically a counter version for go_memstats_heap_objects gauge. Equals to /gc/heap/allocs:objects + /gc/heap/tiny/allocs:objects.
 # TYPE go_memstats_mallocs_total counter
-go_memstats_mallocs_total 78706
+go_memstats_mallocs_total 77178
 # HELP go_memstats_mcache_inuse_bytes Number of bytes in use by mcache structures. Equals to /memory/classes/metadata/mcache/inuse:bytes.
 # TYPE go_memstats_mcache_inuse_bytes gauge
 go_memstats_mcache_inuse_bytes 4592
@@ -455,16 +455,16 @@ go_memstats_mcache_inuse_bytes 4592
 go_memstats_mcache_sys_bytes 16072
 # HELP go_memstats_mspan_inuse_bytes Number of bytes in use by mspan structures. Equals to /memory/classes/metadata/mspan/inuse:bytes.
 # TYPE go_memstats_mspan_inuse_bytes gauge
-go_memstats_mspan_inuse_bytes 120320
+go_memstats_mspan_inuse_bytes 120800
 # HELP go_memstats_mspan_sys_bytes Number of bytes used for mspan structures obtained from system. Equals to /memory/classes/metadata/mspan/inuse:bytes + /memory/classes/metadata/mspan/free:bytes.
 # TYPE go_memstats_mspan_sys_bytes gauge
 go_memstats_mspan_sys_bytes 130560
 # HELP go_memstats_next_gc_bytes Number of heap bytes when next garbage collection will take place. Equals to /gc/heap/goal:bytes.
 # TYPE go_memstats_next_gc_bytes gauge
-go_memstats_next_gc_bytes 8.234746e+06
+go_memstats_next_gc_bytes 8.237066e+06
 # HELP go_memstats_other_sys_bytes Number of bytes used for other system allocations. Equals to /memory/classes/other:bytes.
 # TYPE go_memstats_other_sys_bytes gauge
-go_memstats_other_sys_bytes 631709
+go_memstats_other_sys_bytes 639437
 # HELP go_memstats_stack_inuse_bytes Number of bytes obtained from system for stack allocator in non-CGO environments. Equals to /memory/classes/heap/stacks:bytes.
 # TYPE go_memstats_stack_inuse_bytes gauge
 go_memstats_stack_inuse_bytes 950272
@@ -482,42 +482,42 @@ go_sched_gomaxprocs_threads 2
 go_sched_goroutines_created_goroutines_total 230
 # HELP go_sched_goroutines_goroutines Count of live goroutines. Sourced from /sched/goroutines:goroutines.
 # TYPE go_sched_goroutines_goroutines gauge
-go_sched_goroutines_goroutines 92
+go_sched_goroutines_goroutines 91
 # HELP go_sched_goroutines_not_in_go_goroutines Approximate count of goroutines running or blocked in a system call or cgo call. Not guaranteed to add up to /sched/goroutines:goroutines with other goroutine metrics. Sourced from /sched/goroutines/not-in-go:goroutines.
 # TYPE go_sched_goroutines_not_in_go_goroutines gauge
 go_sched_goroutines_not_in_go_goroutines 1
 # HELP go_sched_goroutines_runnable_goroutines Approximate count of goroutines ready to execute, but not executing. Not guaranteed to add up to /sched/goroutines:goroutines with other goroutine metrics. Sourced from /sched/goroutines/runnable:goroutines.
 # TYPE go_sched_goroutines_runnable_goroutines gauge
-go_sched_goroutines_runnable_goroutines 3
+go_sched_goroutines_runnable_goroutines 4
 # HELP go_sched_goroutines_running_goroutines Approximate count of goroutines executing. Always less than or equal to /sched/gomaxprocs:threads. Not guaranteed to add up to /sched/goroutines:goroutines with other goroutine metrics. Sourced from /sched/goroutines/running:goroutines.
 # TYPE go_sched_goroutines_running_goroutines gauge
-go_sched_goroutines_running_goroutines 2
+go_sched_goroutines_running_goroutines 1
 # HELP go_sched_goroutines_waiting_goroutines Approximate count of goroutines waiting on a resource (I/O or sync primitives). Not guaranteed to add up to /sched/goroutines:goroutines with other goroutine metrics. Sourced from /sched/goroutines/waiting:goroutines.
 # TYPE go_sched_goroutines_waiting_goroutines gauge
-go_sched_goroutines_waiting_goroutines 86
+go_sched_goroutines_waiting_goroutines 85
 # HELP go_sched_latencies_seconds Distribution of the time goroutines have spent in the scheduler in a runnable state before actually running. Bucket counts increase monotonically. Sourced from /sched/latencies:seconds.
 # TYPE go_sched_latencies_seconds histogram
 go_sched_latencies_seconds_bucket{le="6.399999999999999e-08"} 32
-go_sched_latencies_seconds_bucket{le="6.399999999999999e-07"} 60
-go_sched_latencies_seconds_bucket{le="7.167999999999999e-06"} 136
-go_sched_latencies_seconds_bucket{le="8.191999999999999e-05"} 177
-go_sched_latencies_seconds_bucket{le="0.0009175039999999999"} 195
-go_sched_latencies_seconds_bucket{le="0.010485759999999998"} 200
-go_sched_latencies_seconds_bucket{le="0.11744051199999998"} 200
-go_sched_latencies_seconds_bucket{le="+Inf"} 200
-go_sched_latencies_seconds_sum 0.0064064
-go_sched_latencies_seconds_count 200
+go_sched_latencies_seconds_bucket{le="6.399999999999999e-07"} 1208
+go_sched_latencies_seconds_bucket{le="7.167999999999999e-06"} 1275
+go_sched_latencies_seconds_bucket{le="8.191999999999999e-05"} 1321
+go_sched_latencies_seconds_bucket{le="0.0009175039999999999"} 1332
+go_sched_latencies_seconds_bucket{le="0.010485759999999998"} 1337
+go_sched_latencies_seconds_bucket{le="0.11744051199999998"} 1337
+go_sched_latencies_seconds_bucket{le="+Inf"} 1337
+go_sched_latencies_seconds_sum 0.005936512
+go_sched_latencies_seconds_count 1337
 # HELP go_sched_pauses_stopping_gc_seconds Distribution of individual GC-related stop-the-world stopping latencies. This is the time it takes from deciding to stop the world until all Ps are stopped. This is a subset of the total GC-related stop-the-world time (/sched/pauses/total/gc:seconds). During this time, some threads may be executing. Bucket counts increase monotonically. Sourced from /sched/pauses/stopping/gc:seconds.
 # TYPE go_sched_pauses_stopping_gc_seconds histogram
 go_sched_pauses_stopping_gc_seconds_bucket{le="6.399999999999999e-08"} 0
 go_sched_pauses_stopping_gc_seconds_bucket{le="6.399999999999999e-07"} 5
-go_sched_pauses_stopping_gc_seconds_bucket{le="7.167999999999999e-06"} 5
+go_sched_pauses_stopping_gc_seconds_bucket{le="7.167999999999999e-06"} 6
 go_sched_pauses_stopping_gc_seconds_bucket{le="8.191999999999999e-05"} 7
 go_sched_pauses_stopping_gc_seconds_bucket{le="0.0009175039999999999"} 7
 go_sched_pauses_stopping_gc_seconds_bucket{le="0.010485759999999998"} 8
 go_sched_pauses_stopping_gc_seconds_bucket{le="0.11744051199999998"} 8
 go_sched_pauses_stopping_gc_seconds_bucket{le="+Inf"} 8
-go_sched_pauses_stopping_gc_seconds_sum 0.00093216
+go_sched_pauses_stopping_gc_seconds_sum 0.000925632
 go_sched_pauses_stopping_gc_seconds_count 8
 # HELP go_sched_pauses_stopping_other_seconds Distribution of individual non-GC-related stop-the-world stopping latencies. This is the time it takes from deciding to stop the world until all Ps are stopped. This is a subset of the total non-GC-related stop-the-world time (/sched/pauses/total/other:seconds). During this time, some threads may be executing. Bucket counts increase monotonically. Sourced from /sched/pauses/stopping/other:seconds.
 # TYPE go_sched_pauses_stopping_other_seconds histogram
@@ -535,13 +535,13 @@ go_sched_pauses_stopping_other_seconds_count 0
 # TYPE go_sched_pauses_total_gc_seconds histogram
 go_sched_pauses_total_gc_seconds_bucket{le="6.399999999999999e-08"} 0
 go_sched_pauses_total_gc_seconds_bucket{le="6.399999999999999e-07"} 0
-go_sched_pauses_total_gc_seconds_bucket{le="7.167999999999999e-06"} 2
+go_sched_pauses_total_gc_seconds_bucket{le="7.167999999999999e-06"} 3
 go_sched_pauses_total_gc_seconds_bucket{le="8.191999999999999e-05"} 5
 go_sched_pauses_total_gc_seconds_bucket{le="0.0009175039999999999"} 7
 go_sched_pauses_total_gc_seconds_bucket{le="0.010485759999999998"} 8
 go_sched_pauses_total_gc_seconds_bucket{le="0.11744051199999998"} 8
 go_sched_pauses_total_gc_seconds_bucket{le="+Inf"} 8
-go_sched_pauses_total_gc_seconds_sum 0.001104128
+go_sched_pauses_total_gc_seconds_sum 0.0010976
 go_sched_pauses_total_gc_seconds_count 8
 # HELP go_sched_pauses_total_other_seconds Distribution of individual non-GC-related stop-the-world pause latencies. This is the time from deciding to stop the world until the world is started again. Some of this time is spent getting all threads to stop (measured directly in /sched/pauses/stopping/other:seconds). Bucket counts increase monotonically. Sourced from /sched/pauses/total/other:seconds.
 # TYPE go_sched_pauses_total_other_seconds histogram
@@ -560,7 +560,7 @@ go_sched_pauses_total_other_seconds_count 0
 go_sched_threads_total_threads 8
 # HELP go_sync_mutex_wait_total_seconds_total Approximate cumulative time goroutines have spent blocked on a sync.Mutex, sync.RWMutex, or runtime-internal lock. This metric is useful for identifying global changes in lock contention. Collect a mutex or block profile using the runtime/pprof package for more detailed contention data. Sourced from /sync/mutex/wait/total:seconds.
 # TYPE go_sync_mutex_wait_total_seconds_total counter
-go_sync_mutex_wait_total_seconds_total 0.038569088
+go_sync_mutex_wait_total_seconds_total 0.003174192
 # HELP go_threads Number of OS threads created.
 # TYPE go_threads gauge
 go_threads 8
@@ -580,19 +580,19 @@ process_cpu_seconds_total 0.15
 process_max_fds 1.073741816e+09
 # HELP process_network_receive_bytes_total Number of bytes received by the process over the network.
 # TYPE process_network_receive_bytes_total counter
-process_network_receive_bytes_total 137517
+process_network_receive_bytes_total 138183
 # HELP process_network_transmit_bytes_total Number of bytes sent by the process over the network.
 # TYPE process_network_transmit_bytes_total counter
-process_network_transmit_bytes_total 40640
+process_network_transmit_bytes_total 41481
 # HELP process_open_fds Number of open file descriptors.
 # TYPE process_open_fds gauge
 process_open_fds 10
 # HELP process_resident_memory_bytes Resident memory size in bytes.
 # TYPE process_resident_memory_bytes gauge
-process_resident_memory_bytes 3.5340288e+07
+process_resident_memory_bytes 3.5037184e+07
 # HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
 # TYPE process_start_time_seconds gauge
-process_start_time_seconds 1.78947382622e+09
+process_start_time_seconds 1.78956326432e+09
 # HELP process_virtual_memory_bytes Virtual memory size in bytes.
 # TYPE process_virtual_memory_bytes gauge
 process_virtual_memory_bytes 1.321598976e+09
@@ -606,7 +606,7 @@ rest_client_requests_total{code="200",host="10.96.0.1:443",method="PATCH"} 11
 rest_client_requests_total{code="200",host="10.96.0.1:443",method="PUT"} 13
 rest_client_requests_total{code="201",host="10.96.0.1:443",method="POST"} 9
 rest_client_requests_total{code="404",host="10.96.0.1:443",method="GET"} 1
-rest_client_requests_total{code="409",host="10.96.0.1:443",method="PATCH"} 1
+rest_client_requests_total{code="409",host="10.96.0.1:443",method="PATCH"} 2
 rest_client_requests_total{code="429",host="10.96.0.1:443",method="GET"} 1
 # HELP workqueue_adds_total Total number of adds handled by workqueue
 # TYPE workqueue_adds_total counter
@@ -622,17 +622,17 @@ workqueue_longest_running_processor_seconds{controller="previewenvironment",name
 workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="1e-08"} 0
 workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="1e-07"} 0
 workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="1e-06"} 0
-workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="9.999999999999999e-06"} 10
-workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="9.999999999999999e-05"} 18
-workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="0.001"} 19
-workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="0.01"} 21
+workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="9.999999999999999e-06"} 8
+workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="9.999999999999999e-05"} 16
+workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="0.001"} 17
+workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="0.01"} 18
 workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="0.1"} 23
 workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="1"} 23
 workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="10"} 23
 workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="100"} 23
 workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="1000"} 23
 workqueue_queue_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="+Inf"} 23
-workqueue_queue_duration_seconds_sum{controller="previewenvironment",name="previewenvironment"} 0.10812265600000001
+workqueue_queue_duration_seconds_sum{controller="previewenvironment",name="previewenvironment"} 0.117236623
 workqueue_queue_duration_seconds_count{controller="previewenvironment",name="previewenvironment"} 23
 # HELP workqueue_retries_total Total number of items added to the workqueue with a non-zero delay (rate-limited requeues, explicit RequeueAfter or AddAfter calls)
 # TYPE workqueue_retries_total counter
@@ -647,13 +647,13 @@ workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="pre
 workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="1e-06"} 0
 workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="9.999999999999999e-06"} 0
 workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="9.999999999999999e-05"} 0
-workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="0.001"} 13
-workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="0.01"} 17
+workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="0.001"} 10
+workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="0.01"} 15
 workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="0.1"} 23
 workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="1"} 23
 workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="10"} 23
 workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="100"} 23
 workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="1000"} 23
 workqueue_work_duration_seconds_bucket{controller="previewenvironment",name="previewenvironment",le="+Inf"} 23
-workqueue_work_duration_seconds_sum{controller="previewenvironment",name="previewenvironment"} 0.19814807600000003
+workqueue_work_duration_seconds_sum{controller="previewenvironment",name="previewenvironment"} 0.23770112899999996
 workqueue_work_duration_seconds_count{controller="previewenvironment",name="previewenvironment"} 23

@@ -9,6 +9,8 @@ import subprocess
 import time
 import urllib.request
 
+from feature_checks import run_feature_checks
+
 ROOT = Path(__file__).resolve().parents[1]
 CLUSTER = os.environ.get("E2E_CLUSTER", "preview-operator-e2e")
 IMAGE = os.environ.get("IMAGE", "preview-operator:dev")
@@ -22,8 +24,9 @@ CACHE = ROOT / ".cache" / "e2e"
 CACHE.mkdir(parents=True, exist_ok=True)
 ENV = dict(os.environ, KUBECONFIG=str(CACHE / "kubeconfig"))
 report = {"startedAt": dt.datetime.now(dt.timezone.utc).isoformat(), "cluster": CLUSTER,
-          "nodeImage": NODE_IMAGE, "operatorImage": IMAGE, "checks": [], "status": "running"}
+          "nodeImage": NODE_IMAGE, "operatorImage": IMAGE, "expectedChecks": 18, "checks": [], "status": "running"}
 logfile = (EVIDENCE / "e2e-run.log").open("w")
+(EVIDENCE / "e2e-report.json").write_text(json.dumps(report, indent=2) + "\n")
 
 
 def log(message):
@@ -90,7 +93,12 @@ def apply_preview(name, ttl=3600):
 
 def record(name, function):
     start = time.monotonic()
-    function()
+    log(f"RUN: {name}")
+    try:
+        function()
+    except Exception as error:
+        report["checks"].append({"name": name, "status": "failed", "seconds": round(time.monotonic()-start, 2), "error": str(error)})
+        raise
     report["checks"].append({"name": name, "status": "passed", "seconds": round(time.monotonic()-start, 2)})
 
 
@@ -192,6 +200,10 @@ try:
         assert "controller_runtime_reconcile_total" in body
         (EVIDENCE / "e2e-metrics.txt").write_text(body)
     record("Controller and lifecycle metrics", metric_check)
+
+    run_feature_checks(kubectl=kubectl, obj=obj, wait_for=wait_for, phase=phase,
+                       port_forward_get=port_forward_get, record=record, apply_preview=apply_preview,
+                       absent=absent, log=log, report=report, namespace=NS, app_image=APP_IMAGE)
 
     def restart_expiry():
         apply_preview("short-lived", ttl=60)

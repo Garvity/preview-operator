@@ -83,3 +83,12 @@ timestamps are presentation metadata; test evidence records actual execution tim
 - [x] M3 — Operations: manager build, vet, race tests, kustomize rendering and generated-file checks pass.
 - [x] M4 — Integration: real API-server tests and all eight kind lifecycle checks pass; isolated cluster cleaned up.
 - [x] M5 — Delivery: README, architecture, runbook, contribution/security docs and verified SVG/PNG outputs delivered; documentation links and repository hygiene checked.
+
+## Follow-up feature audit — September 16, 2026
+
+- [x] Re-run build, race tests, schema generation and CLI checks.
+- [x] Reproduce and fix Deployment rollout-pause/readiness-delay drift.
+- [x] Verify all 18 live feature checks and API-server regressions.
+- [x] Refresh the report, coverage and images; remove the test cluster.
+
+See `docs/verification/FEATURE_AUDIT.md` for the measured outcomes and limitations.

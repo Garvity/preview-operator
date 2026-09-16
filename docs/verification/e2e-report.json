@@ -1,13 +1,14 @@
 {
-  "startedAt": "2026-09-15T12:03:04.178573+00:00",
+  "startedAt": "2026-09-16T12:52:21.791097+00:00",
   "cluster": "preview-operator-e2e",
   "nodeImage": "kindest/node:v1.37.0",
   "operatorImage": "preview-operator:dev",
+  "expectedChecks": 18,
   "checks": [
     {
       "name": "Provisioning and live HTTP response",
       "status": "passed",
-      "seconds": 11.17
+      "seconds": 11.23
     },
     {
       "name": "Recovery after Deployment and Service deletion",
@@ -17,17 +18,17 @@
     {
       "name": "Spec update and rollout readiness",
       "status": "passed",
-      "seconds": 2.26
+      "seconds": 2.24
     },
     {
       "name": "Foreign resource collision protection",
       "status": "passed",
-      "seconds": 0.42
+      "seconds": 0.44
     },
     {
       "name": "Namespace RBAC and workload security defaults",
       "status": "passed",
-      "seconds": 0.15
+      "seconds": 0.17
     },
     {
       "name": "Controller and lifecycle metrics",
@@ -35,19 +36,70 @@
       "seconds": 0.53
     },
     {
+      "name": "Server defaults and invalid API input rejection",
+      "status": "passed",
+      "seconds": 0.5
+    },
+    {
+      "name": "Pause and resume preserve the deadline",
+      "status": "passed",
+      "seconds": 2.61
+    },
+    {
+      "name": "Custom arguments ports and resource budgets",
+      "status": "passed",
+      "seconds": 5.25
+    },
+    {
+      "name": "Deployment and Service drift repair",
+      "status": "passed",
+      "seconds": 2.99
+    },
+    {
+      "name": "Invalid workload budget error and recovery",
+      "status": "passed",
+      "seconds": 0.3
+    },
+    {
+      "name": "Image rollout failure and recovery",
+      "status": "passed",
+      "seconds": 124.19
+    },
+    {
+      "name": "Health readiness Events and stable conditions",
+      "status": "passed",
+      "seconds": 3.41
+    },
+    {
+      "name": "Out-of-namespace previews remain untouched",
+      "status": "passed",
+      "seconds": 3.28
+    },
+    {
+      "name": "Leader election and failover",
+      "status": "passed",
+      "seconds": 8.04
+    },
+    {
+      "name": "Online expiry and blocked-cleanup recovery",
+      "status": "passed",
+      "seconds": 61.62
+    },
+    {
       "name": "Expiry across operator downtime and no resurrection",
       "status": "passed",
-      "seconds": 73.32
+      "seconds": 72.06
     },
     {
       "name": "Owner-reference garbage collection",
       "status": "passed",
-      "seconds": 0.75
+      "seconds": 1.59
     }
   ],
   "status": "passed",
   "kubernetes": "v1.37.0",
   "httpResponse": "Hello from preview-operator",
+  "leaderFailoverVerified": true,
   "expiredPreview": {
     "apiVersion": "preview.garv.dev/v1alpha1",
     "kind": "PreviewEnvironment",
@@ -55,12 +107,12 @@
       "annotations": {
         "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"short-lived\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":60}}\n"
       },
-      "creationTimestamp": "2026-09-15T12:04:10Z",
+      "creationTimestamp": "2026-09-16T12:58:20Z",
       "generation": 2,
       "name": "short-lived",
       "namespace": "preview-system",
-      "resourceVersion": "914",
-      "uid": "cf3ec919-0273-458c-8a40-39b9248e07fb"
+      "resourceVersion": "1959",
+      "uid": "1f740a56-1954-4a40-8dd8-56706b66cf4c"
     },
     "spec": {
       "args": [
@@ -76,7 +128,7 @@
     "status": {
       "conditions": [
         {
-          "lastTransitionTime": "2026-09-15T12:05:14Z",
+          "lastTransitionTime": "2026-09-16T12:59:23Z",
           "message": "Deadline elapsed and all managed resources have been removed",
           "observedGeneration": 2,
           "reason": "CleanupComplete",
@@ -84,7 +136,7 @@
           "type": "Ready"
         },
         {
-          "lastTransitionTime": "2026-09-15T12:05:14Z",
+          "lastTransitionTime": "2026-09-16T12:59:23Z",
           "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
           "observedGeneration": 2,
           "reason": "DeadlineElapsed",
@@ -92,7 +144,7 @@
           "type": "Expired"
         }
       ],
-      "expiresAt": "2026-09-15T12:05:10Z",
+      "expiresAt": "2026-09-16T12:59:20Z",
       "observedGeneration": 2,
       "phase": "Expired"
     }
@@ -102,14 +154,15 @@
     "kind": "PreviewEnvironment",
     "metadata": {
       "annotations": {
+        "audit.garv.dev/check": "stable",
         "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"preview.garv.dev/v1alpha1\",\"kind\":\"PreviewEnvironment\",\"metadata\":{\"annotations\":{},\"name\":\"hello-preview\",\"namespace\":\"preview-system\"},\"spec\":{\"args\":[\"-text=Hello from preview-operator\",\"-listen=:8080\"],\"containerPort\":8080,\"image\":\"hashicorp/http-echo:1.0.0\",\"replicas\":1,\"servicePort\":80,\"ttlSeconds\":3600}}\n"
       },
-      "creationTimestamp": "2026-09-15T12:03:52Z",
-      "generation": 2,
+      "creationTimestamp": "2026-09-16T12:54:30Z",
+      "generation": 10,
       "name": "hello-preview",
       "namespace": "preview-system",
-      "resourceVersion": "688",
-      "uid": "b2067644-4259-4fe6-8cad-2258c615768e"
+      "resourceVersion": "1469",
+      "uid": "2ac1ca48-5e42-43c5-a70f-d8cffe649543"
     },
     "spec": {
       "args": [
@@ -126,28 +179,28 @@
       "availableReplicas": 2,
       "conditions": [
         {
-          "lastTransitionTime": "2026-09-15T12:04:07Z",
+          "lastTransitionTime": "2026-09-16T12:57:01Z",
           "message": "All requested replicas are updated and available",
-          "observedGeneration": 2,
+          "observedGeneration": 10,
           "reason": "DeploymentAvailable",
           "status": "True",
           "type": "Ready"
         },
         {
-          "lastTransitionTime": "2026-09-15T12:03:52Z",
+          "lastTransitionTime": "2026-09-16T12:54:30Z",
           "message": "Expiry is measured from creationTimestamp plus ttlSeconds",
-          "observedGeneration": 2,
+          "observedGeneration": 10,
           "reason": "WithinLifetime",
           "status": "False",
           "type": "Expired"
         }
       ],
       "endpoint": "http://hello-preview.preview-system.svc:80",
-      "expiresAt": "2026-09-15T13:03:52Z",
-      "observedGeneration": 2,
+      "expiresAt": "2026-09-16T13:54:30Z",
+      "observedGeneration": 10,
       "phase": "Ready"
     }
   },
   "clusterCleanedUp": true,
-  "finishedAt": "2026-09-15T12:05:25.041983+00:00"
+  "finishedAt": "2026-09-16T12:59:35.214113+00:00"
 }
