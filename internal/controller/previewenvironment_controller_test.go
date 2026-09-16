@@ -85,6 +85,8 @@ func TestProvisionRepairAndIdempotency(t *testing.T) {
 		t.Fatal("unchanged reconciliation must not write")
 	}
 	d.Spec.Template.Spec.Containers[0].Image = "unwanted:v2"
+	d.Spec.Paused = true
+	d.Spec.MinReadySeconds = 30
 	if err := r.Update(ctx, d); err != nil {
 		t.Fatal(err)
 	}
@@ -95,6 +97,9 @@ func TestProvisionRepairAndIdempotency(t *testing.T) {
 	_ = r.Get(ctx, key, d)
 	if d.Spec.Template.Spec.Containers[0].Image != p.Spec.Image {
 		t.Fatal("image drift was not repaired")
+	}
+	if d.Spec.Paused || d.Spec.MinReadySeconds != 0 {
+		t.Fatal("rollout policy drift was not repaired")
 	}
 	if err := r.Get(ctx, key, s); err != nil {
 		t.Fatal("service was not recreated", err)

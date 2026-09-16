@@ -37,6 +37,10 @@ func configureDeployment(p *previewv1.PreviewEnvironment, d *appsv1.Deployment) 
 	}
 	d.Labels = mergeLabels(d.Labels, labels(p))
 	d.Spec.Replicas = ptr(p.DesiredReplicas())
+	// Pausing belongs to PreviewEnvironment.spec.replicas=0, not an out-of-band
+	// Deployment rollout pause that could prevent future spec updates from applying.
+	d.Spec.Paused = false
+	d.Spec.MinReadySeconds = 0
 	d.Spec.Selector = &metav1.LabelSelector{MatchLabels: map[string]string{ownerLabel: string(p.UID)}}
 	d.Spec.RevisionHistoryLimit = ptr(int32(2))
 	d.Spec.ProgressDeadlineSeconds = ptr(int32(120))

@@ -15,6 +15,7 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
+	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
@@ -163,6 +164,44 @@ func TestRealAPILifecycle(t *testing.T) {
 		_ = c.Get(ctx, key, s)
 		if !metav1.IsControlledBy(s, p) {
 			t.Fatal("service was not recreated with ownership")
+		}
+	})
+	t.Run("limits-only-budget-is-idempotent", func(t *testing.T) {
+		if err := c.Get(ctx, key, p); err != nil {
+			t.Fatal(err)
+		}
+		p.Spec.Resources = corev1.ResourceRequirements{Limits: corev1.ResourceList{corev1.ResourceCPU: resource.MustParse("250m"), corev1.ResourceMemory: resource.MustParse("128Mi")}}
+		if err := c.Update(ctx, p); err != nil {
+			t.Fatal(err)
+		}
+		reconcile()
+		if err := c.Get(ctx, key, d); err != nil {
+			t.Fatal(err)
+		}
+		version := d.ResourceVersion
+		reconcile()
+		if err := c.Get(ctx, key, d); err != nil {
+			t.Fatal(err)
+		}
+		if d.ResourceVersion != version {
+			t.Fatalf("limits-only budget causes repeated writes: %s -> %s", version, d.ResourceVersion)
+		}
+	})
+	t.Run("deployment-pause-drift-is-repaired", func(t *testing.T) {
+		if err := c.Get(ctx, key, d); err != nil {
+			t.Fatal(err)
+		}
+		d.Spec.Paused = true
+		d.Spec.MinReadySeconds = 30
+		if err := c.Update(ctx, d); err != nil {
+			t.Fatal(err)
+		}
+		reconcile()
+		if err := c.Get(ctx, key, d); err != nil {
+			t.Fatal(err)
+		}
+		if d.Spec.Paused || d.Spec.MinReadySeconds != 0 {
+			t.Fatal("out-of-band rollout policy drift was not repaired")
 		}
 	})
 	t.Run("expiry-waits-for-garbage-collection", func(t *testing.T) {
